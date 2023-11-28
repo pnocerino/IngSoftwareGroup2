@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author sherr
+ * GGGGGGGGG
  */
 public class Git extends Application {
     
