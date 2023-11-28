@@ -21,6 +21,7 @@ public class Git extends Application {
     
     @Override
     public void start(Stage primaryStage) {
+        int x;
         Button btn = new Button();
         int c;
         btn.setText("Say 'Hello World'");
