@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * GGGG
+ * boh 
  */
 public class Git extends Application {
     
