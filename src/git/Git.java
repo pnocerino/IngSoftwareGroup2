@@ -24,6 +24,7 @@ public class Git extends Application {
         int x;
         int z;
         int y;
+        int f;
         Button btn = new Button();
         int c;
         btn.setText("Say 'Hello World'");
