@@ -22,6 +22,7 @@ public class Git extends Application {
     @Override
     public void start(Stage primaryStage) {
         int x;
+        int z;
         int y;
         Button btn = new Button();
         int c;
