@@ -114,9 +114,13 @@
 	-fx-text-fill: linear-gradient(from 25px 25px to 100px 100px, #dc145a, #c71d1d);
 }
 
-.clearButton .tooltip {
+.keysButton .tooltip, .operatorButton .tooltip, .enterButton .tooltip, .backButton .tooltip, .clearButton .tooltip {
 	-fx-font-size: 16px;
 	-fx-font-weight: normal;
+}
+
+.keysButton:pressed, .operatorButton:pressed, .otherButton:pressed, .enterButton:pressed, .backButton:pressed, .clearButton:pressed, .varMenu:pressed {
+	-fx-background-color: rgba(53, 53, 53, 0.6);
 }
 
 /* CONTAINER ****************************************/
@@ -200,6 +204,38 @@
 .varChooseLabel {
 	-fx-text-fill: white;
 }
+
+.varMenu .list-view .scroll-bar {
+	-fx-background-color: rgb(53, 53, 53);
+	-fx-pref-width: 12px;
+}
+
+.varMenu .list-view .scroll-bar .thumb {
+	-fx-background-color: grey;
+	-fx-background-radius: 10px;
+	-fx-pref-width: 12px;
+}
+
+.varMenu .list-view .scroll-bar .thumb:hover {
+	-fx-background-color: rgb(200, 200, 200);
+}
+
+.varMenu .list-view .scroll-bar .increment-button {
+	-fx-pref-width: 0px;
+	-fx-pref-height: 0px;
+	-fx-padding: 0 0 0 0;
+}
+
+.varMenu .list-view .scroll-bar .decrement-button {
+	-fx-padding: -5 0 0 0;
+}
+
+.varMenu .list-view .scroll-bar .increment-button .increment-arrow, .varMenu .list-view .scroll-bar .decrement-button .decrement-arrow {
+	-fx-pref-width: 0px;
+	-fx-pref-height: 0px;
+	-fx-padding: 0 0 0 0;
+}
+
 
 /* STACK VIEW *****************************************************************/
 

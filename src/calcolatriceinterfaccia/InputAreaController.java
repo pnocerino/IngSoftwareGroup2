@@ -5,8 +5,10 @@
  */
 package calcolatriceinterfaccia;
 
+import static calcolatriceinterfaccia.CalcolatriceInterfaccia.currentVariable;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
 /**
@@ -32,20 +34,47 @@ public class InputAreaController {
         keys.numberKeys[keys.DIGITS + 1].setOnAction(e -> buttonPressed(e));
         keys.numberKeys[keys.DIGITS + 2].setOnAction(e -> buttonPressed(e));
         
+        changeCurrentVariable();
+        
         keys.operatorKeys[1].setOnAction(e -> view.display.setText(view.display.getText().substring(0, view.display.getText().length() - 1)));
-        for(int i = 2; i < keys.OPERATORS - 2; i++) {
+        keys.otherButton[0].setOnAction(e -> view.display.setText(""));
+        for(int i = 2; i < keys.OPERATORS; i++) {
             keys.operatorKeys[i].setOnAction(e -> buttonPressed(e));
         }
-        
-        
-        
+    }
     
+    private void changeCurrentVariable() {
+        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                currentVariable = (String)keys.varMenu.getValue();
+                keys.otherButton[4].setText(">" + currentVariable);
+                keys.otherButton[5].setText("<" + currentVariable);
+                keys.otherButton[6].setText("+" + currentVariable);
+                keys.otherButton[7].setText("-" + currentVariable);
+            }
+        };
+        keys.varMenu.setOnAction(event);
     }
     
     private void initBindings() {
         keys.operatorKeys[0].disableProperty().bind(Bindings.equal("", view.display.textProperty()));
         keys.operatorKeys[1].disableProperty().bind(Bindings.equal("", view.display.textProperty()));
-        //view.display.replaceText(view.display.getText().intindexOf(","), ".");
+        keys.otherButton[0].disableProperty().bind(Bindings.equal("", view.display.textProperty()));
+        
+        
+        
+        /*UnaryOperator<Change> filter = change -> {
+            String text = change.getText();
+
+            if (text.matches("[^abcdefg,]*")) {
+               return null;
+            }
+
+            return change;
+        };
+        TextFormatter<String> textFormatter = new TextFormatter<>(filter);
+        view.display.setTextFormatter(textFormatter);*/
     }
     
     private void buttonPressed(ActionEvent e) {

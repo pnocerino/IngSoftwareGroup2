@@ -24,7 +24,7 @@ import javafx.scene.layout.HBox;
 public class KeyboardView extends HBox {
     
     //public TilePane var;
-    String test[] = { "a", "b", "c", "d", "e" };
+    String test[] = { "a", "b", "c", "d", "e", "f", "g", "h", "ì", "l", "x", "y", "z" };
     public Label chooseVar;
     public ComboBox varMenu;
     
@@ -86,7 +86,7 @@ public class KeyboardView extends HBox {
     private void initOperatorButtons() {
         operatorKeys = new Button[OPERATORS + 2];
         
-        operatorKeys[0] = new Button(); operatorKeys[0].setText("↩");
+        operatorKeys[0] = new Button(); operatorKeys[0].setText("↩"); operatorKeys[0].setTooltip(new Tooltip("Inserisce il numero nello stack."));
         operatorKeys[0].getStyleClass().add("enterButton"); //operatorKeys[0].setStyle("-fx-font-size: 50px; -fx-background-color: linear-gradient(from 25px 25px to 100px 100px, #226007, #125703);");
         operatorKeys[1] = new Button(); operatorKeys[1].setText("←");
         operatorKeys[1].getStyleClass().add("backButton"); //operatorKeys[1].setStyle("-fx-font-size: 40px; -fx-padding: 0 0 5 0; -fx-text-fill: linear-gradient(from 25px 25px to 100px 100px, #dc145a, #c71d1d);");
@@ -98,9 +98,9 @@ public class KeyboardView extends HBox {
         operatorKeys[4].getStyleClass().add("operatorButton");
         operatorKeys[5] = new Button(); operatorKeys[5].setText("/");
         operatorKeys[5].getStyleClass().add("operatorButton");
-        operatorKeys[6] = new Button(); operatorKeys[6].setText("√");
+        operatorKeys[6] = new Button(); operatorKeys[6].setText("√"); operatorKeys[6].setTooltip(new Tooltip("Effettua la radice quadrata."));
         operatorKeys[6].getStyleClass().add("operatorButton");
-        operatorKeys[7] = new Button(); operatorKeys[7].setText("±"); 
+        operatorKeys[7] = new Button(); operatorKeys[7].setText("±"); operatorKeys[7].setTooltip(new Tooltip("Effettua l' inversione dei segni."));
         operatorKeys[7].getStyleClass().add("operatorButton");
         
         //⌫
