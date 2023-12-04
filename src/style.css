@@ -253,15 +253,65 @@
 	-fx-font-size: 22px;
 }
 
-.stackLabel {
+.stackLabel .list-cell, .stackLabel .list-cell:odd {
 	-fx-background-color: rgb(53, 53, 53);
 	-fx-pref-width: 320px;
 	-fx-pref-height: 50px;
 	-fx-text-fill: white;
 	-fx-background-radius: 3px;
 	-fx-alignment: center_right;
-	-fx-padding: 0 10 0 0;
+	-fx-padding: 0px 10px 0px 0px;
+        -fx-background-insets: 5px, 5px;
 	-fx-font-size: 20px;
+        -fx-position: bottom;
+        
+}
+
+.stackLabel .list-cell:empty {
+        -fx-pref-width: 0px;
+        -fx-pref-height: 0px;
+}
+
+.stackLabel {
+        -fx-pref-height: 610px;
+        -fx-background-color: #1d1d1d;
+        -fx-background-insets: 0; 
+        -fx-padding: 5px;
+}
+
+.stackLabel .scroll-bar {
+	-fx-background-color: #1d1d1d;
+	-fx-pref-width: 12px;
+}
+
+.stackLabel .scroll-bar .thumb {
+	-fx-background-color: grey;
+	-fx-background-radius: 10px;
+	-fx-pref-width: 12px;
+}
+
+.stackLabel .scroll-bar .thumb:hover {
+	-fx-background-color: rgb(200, 200, 200);
+}
+
+.stackLabel .scroll-bar .increment-button {
+	-fx-pref-width: 0px;
+	-fx-pref-height: 0px;
+	-fx-padding: 0 0 0 0;
+}
+
+.stackLabel .scroll-bar .decrement-button {
+	-fx-padding: 0 0 0 0;
+        -fx-pref-width: 0px;
+	-fx-pref-height: 0px;
+        -fx-background-color: white;
+        
+}
+
+.stackLabel .scroll-bar .increment-button .increment-arrow, .stackLabel .scroll-bar .decrement-button .decrement-arrow {
+	-fx-pref-width: 0px;
+	-fx-pref-height: 0px;
+	-fx-padding: 0 0 0 0;
 }
 
 .stackLabel *.text {
