@@ -34,6 +34,58 @@ public class ComplexNumber {
         toComplexNumber();
     }
     
+    public ComplexNumber sum(ComplexNumber n) {
+        ComplexNumber sum = new ComplexNumber("0");
+        sum.realPart = this.realPart + n.getRealPart();
+        sum.imPart = this.imPart + n.getImPart();
+        return sum;
+    }
+    
+    public ComplexNumber sub(ComplexNumber n) {
+        ComplexNumber sub = new ComplexNumber("0");
+        sub.realPart = this.realPart - n.getRealPart();
+        sub.imPart = this.imPart - n.getImPart();
+        return sub;
+    }
+    
+    public ComplexNumber multiply(ComplexNumber n) {
+        //(a + bi)(c + di) = ac + adi + bci - bd = RE*RE + RE*IMi + IM*REi - IM*IM; 
+        ComplexNumber mul = new ComplexNumber("0");
+        mul.realPart = (this.realPart * n.realPart) - (this.imPart * n.imPart);
+        mul.imPart = (this.realPart * n.imPart) + (this.imPart * n.realPart);
+        return mul;
+    }
+    
+    public ComplexNumber divide(ComplexNumber n) {
+        //(a + bi) / (c + di) = (a + bi)(c - di) / (c + di)(c - di) = (numRE / den) + (numIM / den);
+        //gestire errore divisione per 0;
+        ComplexNumber conj = new ComplexNumber(n.getNumber()); conj.imPart = -(conj.imPart);
+        ComplexNumber div = new ComplexNumber("0");
+        ComplexNumber num = new ComplexNumber(this.multiply(conj).getNumber());
+        ComplexNumber den = new ComplexNumber(n.multiply(conj).getNumber());
+        div.realPart = num.realPart / den.realPart;
+        div.imPart = num.imPart / den.realPart;
+        return div;
+    }
+    
+    
+    
+    public ComplexNumber signChange() {
+        ComplexNumber n = new ComplexNumber(this.getNumber());
+        n.imPart = -(n.imPart); n.realPart = -(n.realPart);
+        return n;
+    }
+    
+
+    public double getRealPart() {
+        return realPart;
+    }
+
+    public double getImPart() {
+        return imPart;
+    }
+    
+    
     public String getNumber() {
         if(realPart == 0 && imPart == 0) return "0";
         else if(realPart == 0 && imPart == 1) return "i";
