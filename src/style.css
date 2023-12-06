@@ -1,0 +1,320 @@
+/* BUTTON ****************************************/
+
+.keysButton {
+	-fx-font-family: Arial;
+	-fx-font-size: 35px;
+	-fx-pref-width: 95px;
+	-fx-max-width: 195px;
+	-fx-padding: 0 0 0 0;
+	-fx-min-height: 65px;
+	-fx-max-height: 65px;
+	-fx-pref-height: 65px;
+	-fx-background-color: rgb(53, 53, 53);
+	-fx-text-fill: white;
+	-fx-background-radius: 10px;
+	-fx-font-weight: bold;
+}
+
+.keysButton:hover {
+	-fx-background-color: rgba(100, 96, 96, 0.5);
+}
+
+.operatorButton {
+	-fx-font-family: Arial;
+	-fx-font-size: 35px;
+	-fx-padding: 0 0 0 0;
+	-fx-min-height: 65px;
+	-fx-max-height: 65px;
+	-fx-pref-height: 65px;
+	-fx-pref-width: 80px;
+	-fx-pref-height: 65px;
+	-fx-max-width: 165px;
+	-fx-background-color: rgb(53, 53, 53);
+	-fx-text-fill: white;
+	-fx-background-radius: 10px;
+	-fx-font-weight: bold;
+}
+
+.operatorButton:hover {
+	-fx-background-color: rgba(100, 96, 96, 0.5);
+}
+
+.enterButton {
+	-fx-font-family: Arial;
+	-fx-font-size: 50px;
+	-fx-padding: 0 0 0 0;
+	-fx-min-height: 65px;
+	-fx-max-height: 65px;
+	-fx-pref-height: 65px;
+	-fx-pref-width: 80px;
+	-fx-pref-height: 65px;
+	-fx-max-width: 165px;
+	-fx-background-color: linear-gradient(from 25px 25px to 100px 100px, #226007, #125703);
+	-fx-text-fill: white;
+	-fx-background-radius: 10px;
+	-fx-font-weight: bold;
+}
+
+.enterButton:hover {
+	-fx-background-color: linear-gradient(from 25px 25px to 100px 100px, rgb(100, 96, 96), rgb(84, 76, 76));
+	-fx-text-fill: linear-gradient(from 25px 25px to 100px 100px, #226007, #125703);
+}
+
+.backButton {
+	-fx-font-family: Arial;
+	-fx-font-size: 40px;
+	-fx-padding: 0 0 6 0;
+	-fx-min-height: 65px;
+	-fx-max-height: 65px;
+	-fx-pref-height: 65px;
+	-fx-pref-width: 80px;
+	-fx-pref-height: 65px;
+	-fx-max-width: 165px;
+	-fx-background-color: rgb(53, 53, 53);
+	-fx-text-fill: linear-gradient(from 25px 25px to 100px 100px, #dc145a, #c71d1d);
+	-fx-background-radius: 10px;
+	-fx-font-weight: bold;
+}
+
+.backButton:hover {
+	-fx-background-color: rgba(100, 96, 96, 0.5);
+	-fx-text-fill: white;
+}
+
+.otherButton {
+	-fx-font-family: Arial;
+	-fx-font-size: 25;
+	-fx-pref-width: 160px;
+	-fx-pref-height: 30px;
+	-fx-max-width: 165px;
+	-fx-background-color: rgb(53, 53, 53);
+	-fx-text-fill: white;
+	-fx-background-radius: 5px;
+	-fx-font-weight: bold;
+}
+
+.otherButton:hover {
+	-fx-background-color: rgba(100, 96, 96, 0.5);
+}
+
+.clearButton {
+	-fx-font-family: Arial;
+	-fx-font-size: 25;
+	-fx-pref-width: 160px;
+	-fx-pref-height: 30px;
+	-fx-max-width: 165px;
+	-fx-background-color: linear-gradient(from 25px 25px to 100px 100px, #dc145a, #c71d1d);
+	-fx-text-fill: white;
+	-fx-background-radius: 5px;
+	-fx-font-weight: bold;
+}
+
+.clearButton:hover {
+	-fx-background-color: linear-gradient(from 25px 25px to 100px 100px, rgb(100, 96, 96), rgb(84, 76, 76));
+	-fx-text-fill: linear-gradient(from 25px 25px to 100px 100px, #dc145a, #c71d1d);
+}
+
+.keysButton .tooltip, .operatorButton .tooltip, .enterButton .tooltip, .backButton .tooltip, .clearButton .tooltip {
+	-fx-font-size: 16px;
+	-fx-font-weight: normal;
+}
+
+.keysButton:pressed, .operatorButton:pressed, .otherButton:pressed, .enterButton:pressed, .backButton:pressed, .clearButton:pressed, .varMenu:pressed {
+	-fx-background-color: rgba(53, 53, 53, 0.6);
+}
+
+/* CONTAINER ****************************************/
+
+.container {
+	-fx-background-color: rgb(43, 43, 43);
+}
+
+/* DISPLAY ****************************************/
+
+.display .content {
+	-fx-background-color: rgb(27, 27, 27);
+	-fx-background-radius: 5px;
+}
+
+.display *.text {
+	-fx-text-alignment: right;
+	-fx-pref-width: 1125px;	
+}
+
+.display {
+	-fx-font-family: Arial;
+	-fx-text-fill: white;
+	-fx-font-size: 100px;
+	-fx-font-weight: bold;
+	-fx-max-height: 120px;
+	-fx-max-width: 830px;
+	-fx-overflow: hidden;
+	-fx-background-color: rgba(0, 0, 0, 0);
+	-fx-background-insets: 0;
+}
+
+.display .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.display .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+.display {
+    -fx-text-box-border: transparent;
+}
+
+.display .scroll-bar:vertical {
+    -fx-pref-width: 1;
+    -fx-opacity: 0;
+}
+.display .scroll-bar:horizontal {
+    -fx-pref-height: 1;
+    -fx-opacity: 0;
+}
+
+/* VARIABLE MENU ****************************************/
+
+.varMenu {
+	-fx-pref-width: 330px;
+	-fx-border-radius: 0px;
+	-fx-pref-height: 30px;
+	-fx-background-color: rgb(53, 53, 53);
+
+}
+
+.varMenu:selected {
+	-fx-background-color: rgb(53, 53, 53);
+}
+
+.varMenu:hover {
+	-fx-background-color: rgba(100, 96, 96, 0.5);
+}
+
+.varMenu .list-cell {
+	-fx-background-color: rgb(53, 53, 53);
+	-fx-text-fill: white;
+}
+
+.varMenu .list-cell:hover, .varMenu .list-cell:selected {
+	-fx-background-color: rgba(100, 96, 96, 0.5);
+}
+
+.varChooseLabel {
+	-fx-text-fill: white;
+}
+
+.varMenu .list-view .scroll-bar {
+	-fx-background-color: rgb(53, 53, 53);
+	-fx-pref-width: 12px;
+}
+
+.varMenu .list-view .scroll-bar .thumb {
+	-fx-background-color: grey;
+	-fx-background-radius: 10px;
+	-fx-pref-width: 12px;
+}
+
+.varMenu .list-view .scroll-bar .thumb:hover {
+	-fx-background-color: rgb(200, 200, 200);
+}
+
+.varMenu .list-view .scroll-bar .increment-button {
+	-fx-pref-width: 0px;
+	-fx-pref-height: 0px;
+	-fx-padding: 0 0 0 0;
+}
+
+.varMenu .list-view .scroll-bar .decrement-button {
+	-fx-padding: -5 0 0 0;
+}
+
+.varMenu .list-view .scroll-bar .increment-button .increment-arrow, .varMenu .list-view .scroll-bar .decrement-button .decrement-arrow {
+	-fx-pref-width: 0px;
+	-fx-pref-height: 0px;
+	-fx-padding: 0 0 0 0;
+}
+
+
+/* STACK VIEW *****************************************************************/
+
+.stackContainer {
+	-fx-background-color: #1d1d1d;
+	-fx-pref-width: 400px;
+}
+
+
+/* MEMORY LABEL ****************************************/
+
+.memoryLabel {
+	-fx-text-fill: white;
+	-fx-font-weight: bold;
+	-fx-font-size: 22px;
+}
+
+.stackLabel .list-cell, .stackLabel .list-cell:odd {
+	-fx-background-color: rgb(53, 53, 53);
+	-fx-pref-width: 320px;
+	-fx-pref-height: 50px;
+	-fx-text-fill: white;
+	-fx-background-radius: 3px;
+	-fx-alignment: center_right;
+	-fx-padding: 0px 10px 0px 0px;
+        -fx-background-insets: 5px, 5px;
+	-fx-font-size: 20px;
+        -fx-position: bottom;
+        
+}
+
+.stackLabel .list-cell:empty {
+        -fx-pref-width: 0px;
+        -fx-pref-height: 0px;
+}
+
+.stackLabel {
+        -fx-pref-height: 610px;
+        -fx-background-color: #1d1d1d;
+        -fx-background-insets: 0; 
+        -fx-padding: 5px;
+}
+
+.stackLabel .scroll-bar {
+	-fx-background-color: #1d1d1d;
+	-fx-pref-width: 12px;
+}
+
+.stackLabel .scroll-bar .thumb {
+	-fx-background-color: grey;
+	-fx-background-radius: 10px;
+	-fx-pref-width: 12px;
+}
+
+.stackLabel .scroll-bar .thumb:hover {
+	-fx-background-color: rgb(200, 200, 200);
+}
+
+.stackLabel .scroll-bar .increment-button {
+	-fx-pref-width: 0px;
+	-fx-pref-height: 0px;
+	-fx-padding: 0 0 0 0;
+}
+
+.stackLabel .scroll-bar .decrement-button {
+	-fx-padding: 0 0 0 0;
+        -fx-pref-width: 0px;
+	-fx-pref-height: 0px;
+        -fx-background-color: white;
+        
+}
+
+.stackLabel .scroll-bar .increment-button .increment-arrow, .stackLabel .scroll-bar .decrement-button .decrement-arrow {
+	-fx-pref-width: 0px;
+	-fx-pref-height: 0px;
+	-fx-padding: 0 0 0 0;
+}
+
+.stackLabel *.text {
+	-fx-alignment: right;
+}
+
