@@ -6,16 +6,22 @@
 package gui;
 
 import static calcolatriceinterfaccia.CalcolatriceInterfaccia.currentVariable;
+import complexnumber.Command;
 import complexnumber.ComplexNumber;
 import complexnumber.Stack;
-import java.util.function.UnaryOperator;
+import complexnumber.variables.Variables;
+import exceptions.SyntaxErrorException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static javafx.application.Platform.exit;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextFormatter;
-import javafx.scene.control.TextFormatter.Change;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -30,12 +36,14 @@ public class GUIController {
     private KeyboardView keys;
     private StackView stackView;
     private Stack stack;
+    private Variables vars;
     
     public GUIController(InputAreaView view, StackView stackView) {
         this.view = view;
         this.keys = this.view.keyboardRow;
         this.stackView = stackView;
         this.stack = stackView.stackClass;
+        this.vars = new Variables();
         initButtonAction(); initBindings();
     }
     
@@ -48,49 +56,88 @@ public class GUIController {
         keys.numberKeys[keys.DIGITS + 2].setOnAction(e -> buttonPressed(e));
         
         changeCurrentVariable();
-        
-        /*keys.otherButton[1].setOnAction(e -> {
-            File file = new File("C:\\Users\\sherr\\Documents\\Progetto\\Ingegneria del Software\\Requirements Enginnering\\Tabella priorità.pdf");
-            final Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
-            if(desktop != null && desktop.isSupported(Desktop.Action.OPEN)) {
-                try {
-                    desktop.open(file);
-                } catch (IOException ex) {
-                    Logger.getLogger(GUIController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-               }
-        });*/
-        /*UnaryOperator<Change> filter = change -> {
-            String text = change.getText();
 
-            if (text.matches("[0123456789abcdefghijklmnopqrstuvwxyz'\n'.]*")) {
-            return change;
-        }
-
-        return null;
-        };*/
-        TextFormatter<String> textFormatter = new TextFormatter<>(filter);
-        view.display.setTextFormatter(textFormatter);
         
         view.display.setOnKeyPressed((KeyEvent ke) -> {
-            if(ke.getCode().equals(KeyCode.ENTER)) { stack.push(new ComplexNumber(view.display.getText())); view.display.setText(""); }
-            if(ke.getCode().equals(KeyCode.COMMA)) { view.display.setText(view.display.getText() + "."); };
+            if(ke.getCode().equals(KeyCode.ENTER)) { stack.push(new ComplexNumber(view.display.getText())); view.display.setText(""); ke.consume();}
+            //if(ke.getCode().equals(KeyCode.COMMA)) { view.display.setText(view.display.getText() + "."); };
         
         });
-        
-        keys.operatorKeys[0].setOnAction(e -> { stack.push(new ComplexNumber(view.display.getText())); view.display.setText(""); } );
+     
+        keys.operatorKeys[0].setOnAction(e -> { 
+                Command command = new Command(view.display.getText()); 
+                view.display.setText(""); 
+                try {
+                    command.executeCommand(stack, vars);
+                } catch (SyntaxErrorException ex) {
+                    Alert dialog = new Alert(AlertType.ERROR, ex.getMessage(), ButtonType.CLOSE);
+                    dialog.showAndWait(); exit();
+                }
+        } ); 
         keys.operatorKeys[1].setOnAction(e -> view.display.setText(view.display.getText().substring(0, view.display.getText().length() - 1)));
-        keys.otherButton[0].setOnAction(e -> { view.display.setText("");  stack.stack.clear(); } );
-        for(int i = 2; i < keys.OPERATORS; i++) {
-            keys.operatorKeys[i].setOnAction(e -> buttonPressed(e));
-        }
+        keys.otherButton[0].setOnAction(e -> { try {
+            view.display.setText(""); Command command = new Command("clear"); command.executeCommand(stack, vars);
+            } catch (SyntaxErrorException ex) {
+                Logger.getLogger(GUIController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+} );
+        keys.otherButton[1].setOnAction(e -> { try {
+            Command command = new Command("drop"); command.executeCommand(stack, vars);
+            } catch (SyntaxErrorException ex) {
+                Alert dialog = new Alert(AlertType.ERROR, "Si è verificato un errore di sintassi.", ButtonType.CLOSE);
+                dialog.showAndWait(); exit();
+            }
+} );
+        keys.otherButton[2].setOnAction(e -> { try {
+            Command command = new Command("dup"); command.executeCommand(stack, vars);
+            } catch (SyntaxErrorException ex) {
+                Alert dialog = new Alert(AlertType.ERROR, "Si è verificato un errore di sintassi.", ButtonType.CLOSE);
+                dialog.showAndWait(); exit();
+            }
+} );
+        keys.otherButton[3].setOnAction(e -> { try {
+            Command command = new Command("over"); command.executeCommand(stack, vars);
+            } catch (SyntaxErrorException ex) {
+                Alert dialog = new Alert(AlertType.ERROR, "Si è verificato un errore di sintassi.", ButtonType.CLOSE);
+                dialog.showAndWait(); exit();
+            }
+} );
+        keys.otherButton[8].setOnAction(e -> { try {
+            Command command = new Command("swap"); command.executeCommand(stack, vars);
+            } catch (SyntaxErrorException ex) {
+                Alert dialog = new Alert(AlertType.ERROR, "Si è verificato un errore di sintassi.", ButtonType.CLOSE);
+                dialog.showAndWait(); exit();
+            }
+} );
+        
+        keys.otherButton[4].setOnAction(e -> { try {
+            Command command = new Command(">" + currentVariable); command.executeCommand(stack, vars);
+            } catch (SyntaxErrorException ex) {
+                Logger.getLogger(GUIController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+} );
+        keys.otherButton[5].setOnAction(e -> { try {
+            Command command = new Command("<" + currentVariable); command.executeCommand(stack, vars);
+            } catch (SyntaxErrorException ex) {
+                Logger.getLogger(GUIController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+} );
+        
+        keys.operatorKeys[2].setOnAction(e -> buttonPressed(e));
+        keys.operatorKeys[3].setOnAction(e -> buttonPressed(e));
+        keys.operatorKeys[4].setOnAction(e -> { view.display.setText(view.display.getText() + "*"); });
+        keys.operatorKeys[5].setOnAction(e -> buttonPressed(e));
+        keys.operatorKeys[6].setOnAction(e -> { view.display.setText(view.display.getText() + "sqrt"); });
+        keys.operatorKeys[7].setOnAction(e -> { view.display.setText(view.display.getText() + "+-"); });
+        
+        
     }
     
     private void changeCurrentVariable() {
         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                currentVariable = (String)keys.varMenu.getValue();
+                currentVariable = (char)keys.varMenu.getValue();
                 keys.otherButton[4].setText(">" + currentVariable);
                 keys.otherButton[5].setText("<" + currentVariable);
                 keys.otherButton[6].setText("+" + currentVariable);
@@ -104,6 +151,9 @@ public class GUIController {
         keys.otherButton[0].disableProperty().bind(Bindings.isEmpty(stack.stack));
         keys.operatorKeys[0].disableProperty().bind(Bindings.equal("", view.display.textProperty()));
         keys.operatorKeys[1].disableProperty().bind(Bindings.equal("", view.display.textProperty()));
+        
+        view.display.setTextFormatter(new TextFormatter<String>(change -> 
+            change.getControlNewText().length() <= 15 ? change : null));
         
         
         

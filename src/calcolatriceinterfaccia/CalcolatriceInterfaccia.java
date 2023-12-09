@@ -20,7 +20,7 @@ import javafx.stage.Stage;
  */
 public class CalcolatriceInterfaccia extends Application {
     
-    public static String currentVariable = "x";
+    public static char currentVariable = 'x';
     @Override
     public void start(Stage primaryStage) {
         ContainerView root = new ContainerView(); //root.setStyle("-fx-background-color:darkgrey;");

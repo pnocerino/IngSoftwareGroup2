@@ -18,6 +18,7 @@ public class ContainerView extends HBox {
     GUIController inputAreaController;
     StackView stackView;
     
+    
     public ContainerView() {
         super();
         inputArea = new InputAreaView();

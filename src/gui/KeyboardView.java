@@ -6,6 +6,10 @@
 package gui;
 
 import static calcolatriceinterfaccia.CalcolatriceInterfaccia.currentVariable;
+import complexnumber.variables.Variables;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javafx.collections.FXCollections;
 
 import javafx.geometry.Insets;
@@ -24,7 +28,7 @@ import javafx.scene.layout.HBox;
 public class KeyboardView extends HBox {
     
     //public TilePane var;
-    String test[] = { "a = 5223", "b", "c", "d", "e", "f", "g", "h", "ì", "l", "x", "y", "z" };
+    //Variables variablesClass = new Variables();
     public Label chooseVar;
     public ComboBox varMenu;
     
@@ -34,15 +38,16 @@ public class KeyboardView extends HBox {
     
     public final int DIGITS = 10; //+3
     public final int OPERATORS = 6; //+1
-    public final int OTHER = 8;
-    
-    
-    
+    public final int OTHER = 9;
+        
     public KeyboardView() {
         super();
         
         chooseVar = new Label();
-        varMenu = new ComboBox(FXCollections.observableArrayList(test));
+        /*for(int i = 0; i < 26; i++) {
+            variables.add((char)(65 + i));
+        }*/
+        varMenu = new ComboBox(FXCollections.observableArrayList(new ArrayList<Character>(Arrays.asList('a', 'b'))));
         //var = new TilePane(varMenu); var.getStyleClass().add("varTilePane");
         initDigitsButtons();
         initOperatorButtons(); 
@@ -118,13 +123,15 @@ public class KeyboardView extends HBox {
         otherButton[2].getStyleClass().add("otherButton");
         otherButton[3] = new Button(); otherButton[3].setText("Over");
         otherButton[3].getStyleClass().add("otherButton");
-        otherButton[4] = new Button(); otherButton[4].setText(">" + currentVariable);
+        otherButton[8] = new Button(); otherButton[8].setText("Swap");
+        otherButton[8].getStyleClass().add("otherButton");
+        otherButton[4] = new Button(); otherButton[4].setText(">" + String.valueOf(currentVariable));
         otherButton[4].getStyleClass().add("otherButton");
-        otherButton[5] = new Button(); otherButton[5].setText("<" + currentVariable);
+        otherButton[5] = new Button(); otherButton[5].setText("<" + String.valueOf(currentVariable));
         otherButton[5].getStyleClass().add("otherButton");
-        otherButton[6] = new Button(); otherButton[6].setText("+" + currentVariable);
+        otherButton[6] = new Button(); otherButton[6].setText("+" + String.valueOf(currentVariable));
         otherButton[6].getStyleClass().add("otherButton");
-        otherButton[7] = new Button(); otherButton[7].setText("-" + currentVariable);
+        otherButton[7] = new Button(); otherButton[7].setText("-" + String.valueOf(currentVariable));
         otherButton[7].getStyleClass().add("otherButton");
         
         chooseVar.setText("Scegli una variabile:"); chooseVar.getStyleClass().add("varChooseLabel");
@@ -167,6 +174,7 @@ public class KeyboardView extends HBox {
         for(int i = 0; i < OTHER/2; i++) {
             vPane.add(otherButton[i + 4], 1, i);
         }
+        vPane.add(otherButton[8], 0, 4);
         vPane.add(chooseVar, 0, 5, 2, 1);
         vPane.add(varMenu, 0, 6, 2, 1);
         vPane.setHgap(5); vPane.setVgap(5);

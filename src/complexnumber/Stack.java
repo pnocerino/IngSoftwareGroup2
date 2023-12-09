@@ -15,10 +15,11 @@ import javafx.collections.ObservableList;
 public class Stack {
     
     public ObservableList<ComplexNumber> stack;
-    private int capacity;
+    private final int capacity;
     
     public Stack() {
-        stack = FXCollections.observableArrayList();
+        this.stack = FXCollections.observableArrayList();
+        this.capacity = 24;
     }
     
     public ObservableList getStack() {
@@ -30,11 +31,11 @@ public class Stack {
     }
     
     public ComplexNumber pop() {
-        return (ComplexNumber)stack.remove(getSize() - 1);
+        return (ComplexNumber)stack.remove(0);
     }
     
     public ComplexNumber peek() {
-        return (ComplexNumber)stack.get(getSize() - 1);
+        return (ComplexNumber)stack.get(0);
     }
     
     public int getSize() {
@@ -46,7 +47,7 @@ public class Stack {
     }
     
     public boolean isFull() {
-        return stack.size() > 24;
+        return stack.size() > capacity;
     }
     
     
