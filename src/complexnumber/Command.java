@@ -6,13 +6,19 @@
 package complexnumber;
 
 //import eccezioni.*;
-
+import static calcolatriceinterfaccia.CalcolatriceInterfaccia.currentVariable;
 import complexnumber.operations.MathOperation;
 import complexnumber.operations.Operation;
 import complexnumber.operations.StackOperation;
 import complexnumber.operations.VariableOperation;
 import complexnumber.variables.Variables;
 import exceptions.SyntaxErrorException;
+import exceptions.SystemErrorException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static javafx.application.Platform.exit;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 
 /**
@@ -107,7 +113,12 @@ public class Command {
         
         if(this.isOperand()){
             ComplexNumber n = new ComplexNumber(this.command);
-            stack.push(n);
+            try {
+                stack.push(n);
+            } catch (SystemErrorException ex) {
+                Alert dialog = new Alert(Alert.AlertType.INFORMATION, ex.getMessage(), ButtonType.OK);
+                dialog.setTitle("Stack pieno"); dialog.showAndWait();
+            }
         } else if(this.isOperator()) {
             Operation o;
             if(this.isMathOperator()){
@@ -117,6 +128,7 @@ public class Command {
                 o = new StackOperation(this.command, stack);
                 o.solveOperation();
             }else{
+                currentVariable = this.command.charAt(this.command.length() - 1);
                 o = new VariableOperation(this.command, stack, vars);
                 o.solveOperation();
             }

@@ -8,6 +8,9 @@ package gui;
 //import static complexnumber.Stack.stack;
 import complexnumber.ComplexNumber;
 import complexnumber.Stack;
+import exceptions.SystemErrorException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -53,24 +56,28 @@ public class StackView extends VBox {
     }
     
     public void initTest() {
-        stackClass.push(new ComplexNumber("2+2i"));
-        stackClass.push(new ComplexNumber("2i"));
-        stackClass.push(new ComplexNumber("-4i"));
-        stackClass.push(new ComplexNumber("2+2i"));
-        stackClass.push(new ComplexNumber("2i"));
-        stackClass.push(new ComplexNumber("-4i"));
-        stackClass.push(new ComplexNumber("2+2i"));
-        stackClass.push(new ComplexNumber("2i"));
-        stackClass.push(new ComplexNumber("-4i"));
-        stackClass.push(new ComplexNumber("53i"));
-        stackClass.push(new ComplexNumber("2i"));
-        stackClass.push(new ComplexNumber("0"));
-        stackClass.push(new ComplexNumber("28.32i"));
-        stackClass.push(new ComplexNumber("2i"));
-        stackClass.push(new ComplexNumber("-4i"));
-        stackClass.push(new ComplexNumber("53i"));
-        stackClass.push(new ComplexNumber("2i"));
-        stackClass.push(new ComplexNumber("11.3"));
+        try {
+            stackClass.push(new ComplexNumber("2+2i"));
+            stackClass.push(new ComplexNumber("2i"));
+            stackClass.push(new ComplexNumber("-4i"));
+            stackClass.push(new ComplexNumber("2+2i"));
+            stackClass.push(new ComplexNumber("2i"));
+            stackClass.push(new ComplexNumber("-4i"));
+            stackClass.push(new ComplexNumber("2+2i"));
+            stackClass.push(new ComplexNumber("2i"));
+            stackClass.push(new ComplexNumber("-4i"));
+            stackClass.push(new ComplexNumber("53i"));
+            stackClass.push(new ComplexNumber("2i"));
+            stackClass.push(new ComplexNumber("0"));
+            stackClass.push(new ComplexNumber("28.32i"));
+            stackClass.push(new ComplexNumber("2i"));
+            stackClass.push(new ComplexNumber("-4i"));
+            stackClass.push(new ComplexNumber("53i"));
+            stackClass.push(new ComplexNumber("2i"));
+            stackClass.push(new ComplexNumber("11.3"));
+        } catch (SystemErrorException ex) {
+            Logger.getLogger(StackView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     

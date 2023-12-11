@@ -7,9 +7,7 @@ package gui;
 
 import static calcolatriceinterfaccia.CalcolatriceInterfaccia.currentVariable;
 import complexnumber.Command;
-import complexnumber.ComplexNumber;
 import complexnumber.Stack;
-import complexnumber.variables.Variable;
 import complexnumber.variables.Variables;
 import exceptions.SyntaxErrorException;
 import java.util.logging.Level;
@@ -22,7 +20,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -62,7 +59,16 @@ public class GUIController {
         
         view.display.setOnKeyPressed((KeyEvent ke) -> {
             if(ke.getCode().equals(KeyCode.ENTER)) { 
-                stack.push(new ComplexNumber(view.display.getText())); view.display.setText(""); ke.consume();
+                Command command = new Command(view.display.getText());
+                view.display.setText("");
+                try {
+                    command.executeCommand(stack, vars);
+                    view.keyboardRow.list.set((int)(currentVariable - 97), currentVariable + " = " + vars.search(currentVariable).toString());
+                } catch (SyntaxErrorException ex) {
+                    Alert dialog = new Alert(AlertType.ERROR, ex.getMessage(), ButtonType.CLOSE);
+                    dialog.showAndWait(); exit();
+                } 
+                ke.consume();
             }
             
     
@@ -70,9 +76,8 @@ public class GUIController {
         });
      
         keys.operatorKeys[0].setOnAction(e -> { 
-                Command command = new Command(view.display.getText()); 
+                Command command = new Command(view.display.getText());
                 view.display.setText("");
-                //view.keyboardRow.list.set((int)(currentVariable - 97), currentVariable + " = " + vars.search(currentVariable).toString());
                 try {
                     command.executeCommand(stack, vars);
                     view.keyboardRow.list.set((int)(currentVariable - 97), currentVariable + " = " + vars.search(currentVariable).toString());
@@ -175,16 +180,16 @@ public class GUIController {
     }
     
     private void initBindings() {
-        keys.otherButton[0].disableProperty().bind(Bindings.isEmpty(stack.stack));
+        for(int i = 0; i < 4; i++) {
+            keys.otherButton[i].disableProperty().bind(Bindings.isEmpty(stack.stack));
+        } keys.otherButton[8].disableProperty().bind(Bindings.isEmpty(stack.stack));
         keys.operatorKeys[0].disableProperty().bind(Bindings.equal("", view.display.textProperty()));
         keys.operatorKeys[1].disableProperty().bind(Bindings.equal("", view.display.textProperty()));
         for(int i = 4; i < 8; i++) {
             keys.otherButton[i].disableProperty().bind(keys.varMenu.valueProperty().isNull());
         }
-        //keys.otherButton[4].disableProperty().bind(vars.search(currentVariable) == null);
         
-        view.display.setTextFormatter(new TextFormatter<String>(change -> 
-            change.getControlNewText().length() <= 15 ? change : null));        
+        view.display.setTextFormatter(new TextFormatter<String>(change -> change.getControlNewText().length() <= 15 ? change : null));        
     }
     
     private void buttonPressed(ActionEvent e) {

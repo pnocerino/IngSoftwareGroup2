@@ -7,11 +7,8 @@ package calcolatriceinterfaccia;
 
 import gui.ContainerView;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -30,8 +27,9 @@ public class CalcolatriceInterfaccia extends Application {
         scene.getStylesheets().add("style.css");
         
         
-        primaryStage.setTitle("Test Tastiera");
+        primaryStage.setTitle("Calcolatrice scientifica con numeri complessi");
         primaryStage.setScene(scene);
+        primaryStage.getIcons().add(new Image("icon.png"));
         primaryStage.setResizable(false);
         primaryStage.show();
     }

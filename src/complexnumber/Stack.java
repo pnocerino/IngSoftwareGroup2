@@ -5,6 +5,7 @@
  */
 package complexnumber;
 
+import exceptions.SystemErrorException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -26,7 +27,8 @@ public class Stack {
         return stack;
     }
     
-    public void push(ComplexNumber n) {
+    public void push(ComplexNumber n) throws SystemErrorException {
+        if(isFull()) throw new SystemErrorException("Lo stack ha raggiunto la capacità massima.\nL' elemento verrà ignorato.");
         stack.add(0, n);
     }
     
@@ -47,7 +49,7 @@ public class Stack {
     }
     
     public boolean isFull() {
-        return stack.size() > capacity;
+        return stack.size() > capacity - 1;
     }
     
     

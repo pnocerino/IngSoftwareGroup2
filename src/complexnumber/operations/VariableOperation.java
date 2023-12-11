@@ -11,6 +11,11 @@ import complexnumber.Stack;
 import complexnumber.variables.Variable;
 import complexnumber.variables.Variables;
 import exceptions.SyntaxErrorException;
+import exceptions.SystemErrorException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 /**
  *
@@ -48,7 +53,12 @@ public class VariableOperation extends Operation {
             try {
                 Variable v = vars.search(name);
                 ComplexNumber n = new ComplexNumber(v.toString());
-                super.getStack().push(n);
+                try {
+                    super.getStack().push(n);
+                } catch (SystemErrorException ex) {
+                    Alert dialog = new Alert(Alert.AlertType.INFORMATION, ex.getMessage(), ButtonType.OK);
+                    dialog.setTitle("Stack pieno"); dialog.showAndWait();
+                }
             } catch (NullPointerException ex) {
                 throw new SyntaxErrorException("Errore variabile.");
             }

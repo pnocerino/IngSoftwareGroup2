@@ -7,6 +7,9 @@ package complexnumber.operations;
 
 import complexnumber.ComplexNumber;
 import complexnumber.Stack;
+import exceptions.SystemErrorException;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 /**
  *
@@ -23,14 +26,24 @@ public class MathOperation extends Operation{
     @Override
     public void solveOperation() {
         if(this.operator.matches("(\\+\\-|sqrt)")){
-            this.unary();
+            try {
+                this.unary();
+            } catch (SystemErrorException ex) {
+                Alert dialog = new Alert(Alert.AlertType.INFORMATION, ex.getMessage(), ButtonType.OK);
+                dialog.setTitle("Stack pieno"); dialog.showAndWait();
+            }
         }else{
-            this.notUnary();
+            try {
+                this.notUnary();
+            } catch (SystemErrorException ex) {
+                Alert dialog = new Alert(Alert.AlertType.INFORMATION, ex.getMessage(), ButtonType.OK);
+                dialog.setTitle("Stack pieno"); dialog.showAndWait();
+            }
         }
         
     }
     
-    public void unary(){
+    public void unary() throws SystemErrorException{
         
         ComplexNumber n = super.getStack().pop();
 
@@ -45,7 +58,7 @@ public class MathOperation extends Operation{
         
     }
     
-    public void notUnary(){
+    public void notUnary() throws SystemErrorException{
         
         ComplexNumber n1 = super.getStack().pop();
         ComplexNumber n2 = super.getStack().pop();

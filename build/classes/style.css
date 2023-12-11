@@ -114,7 +114,7 @@
 	-fx-text-fill: linear-gradient(from 25px 25px to 100px 100px, #dc145a, #c71d1d);
 }
 
-.keysButton .tooltip, .operatorButton .tooltip, .enterButton .tooltip, .backButton .tooltip, .clearButton .tooltip {
+.keysButton .tooltip, .operatorButton .tooltip, .enterButton .tooltip, .backButton .tooltip, .clearButton .tooltip, .otherButton .tooltip {
 	-fx-font-size: 16px;
 	-fx-font-weight: normal;
 }

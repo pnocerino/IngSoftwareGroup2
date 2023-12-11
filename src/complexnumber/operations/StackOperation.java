@@ -7,6 +7,11 @@ package complexnumber.operations;
 
 import complexnumber.ComplexNumber;
 import complexnumber.Stack;
+import exceptions.SystemErrorException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 /**
  *
@@ -27,11 +32,26 @@ public class StackOperation extends Operation{
         }else if(this.operator.equals("drop")){
             this.drop();
         }else if(this.operator.equals("dup")){
-            this.dup();
+            try {
+                this.dup();
+            } catch (SystemErrorException ex) {
+                Alert dialog = new Alert(Alert.AlertType.INFORMATION, ex.getMessage(), ButtonType.OK);
+                dialog.setTitle("Stack pieno"); dialog.showAndWait();
+            }
         }else if(this.operator.equals("swap")){
-            this.swap();
+            try {
+                this.swap();
+            } catch (SystemErrorException ex) {
+                Alert dialog = new Alert(Alert.AlertType.INFORMATION, ex.getMessage(), ButtonType.OK);
+                dialog.setTitle("Stack pieno"); dialog.showAndWait();
+            }
         }else if(this.operator.equals("over")){
-            this.over();
+            try {
+                this.over();
+            } catch (SystemErrorException ex) {
+                Alert dialog = new Alert(Alert.AlertType.INFORMATION, ex.getMessage(), ButtonType.OK);
+                dialog.setTitle("Stack pieno"); dialog.showAndWait();
+            }
         }
     
     }
@@ -44,18 +64,18 @@ public class StackOperation extends Operation{
         super.getStack().pop();
     }
     
-    public void dup(){
+    public void dup() throws SystemErrorException{
         super.getStack().push(super.getStack().peek());
     }
     
-    public void swap(){
+    public void swap() throws SystemErrorException{
         ComplexNumber top = super.getStack().pop();
         ComplexNumber bot = super.getStack().pop();
         super.getStack().push(top);
         super.getStack().push(bot);
     }
     
-    public void over(){
+    public void over() throws SystemErrorException{
         ComplexNumber n = super.getStack().pop();
         super.getStack().push(super.getStack().peek());
         super.getStack().push(n);

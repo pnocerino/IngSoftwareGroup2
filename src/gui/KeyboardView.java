@@ -6,8 +6,6 @@
 package gui;
 
 import static calcolatriceinterfaccia.CalcolatriceInterfaccia.currentVariable;
-import java.util.ArrayList;
-import java.util.Arrays;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -44,13 +42,11 @@ public class KeyboardView extends HBox {
         super();
         
         chooseVar = new Label();
-        /*for(int i = 0; i < 26; i++) {
-            variables.add((char)(65 + i));
-        }*/
         list = FXCollections.observableArrayList();
-        list.add("a"); list.add("b");
+        for(int i = 0; i < 26; i++) {
+            list.add(String.valueOf((char)(i + 97)));
+        }
         varMenu = new ComboBox(list);
-        //var = new TilePane(varMenu); var.getStyleClass().add("varTilePane");
         initDigitsButtons();
         initOperatorButtons(); 
         initOtherButtons(); 
@@ -74,11 +70,6 @@ public class KeyboardView extends HBox {
         numberKeys[DIGITS].setText("0");
         numberKeys[DIGITS].getStyleClass().add("keysButton");
         
-        /*numberKeys[DIGITS + 1] = new Button();
-        numberKeys[DIGITS + 1].setText("↵");
-        numberKeys[DIGITS + 1].getStyleClass().add("keysButton");
-        //numberKeys[DIGITS + 1].setStyle("-fx-font-family:Arial;-fx-font-size:40");*/
-        
         numberKeys[DIGITS + 1] = new Button();
         numberKeys[DIGITS + 1].setText("i");
         numberKeys[DIGITS + 1].getStyleClass().add("keysButton");
@@ -94,9 +85,9 @@ public class KeyboardView extends HBox {
         operatorKeys = new Button[OPERATORS + 2];
         
         operatorKeys[0] = new Button(); operatorKeys[0].setText("↩"); operatorKeys[0].setTooltip(new Tooltip("Inserisce il numero nello stack."));
-        operatorKeys[0].getStyleClass().add("enterButton"); //operatorKeys[0].setStyle("-fx-font-size: 50px; -fx-background-color: linear-gradient(from 25px 25px to 100px 100px, #226007, #125703);");
+        operatorKeys[0].getStyleClass().add("enterButton"); 
         operatorKeys[1] = new Button(); operatorKeys[1].setText("←");
-        operatorKeys[1].getStyleClass().add("backButton"); //operatorKeys[1].setStyle("-fx-font-size: 40px; -fx-padding: 0 0 5 0; -fx-text-fill: linear-gradient(from 25px 25px to 100px 100px, #dc145a, #c71d1d);");
+        operatorKeys[1].getStyleClass().add("backButton"); 
         operatorKeys[2] = new Button(); operatorKeys[2].setText("+");
         operatorKeys[2].getStyleClass().add("operatorButton");
         operatorKeys[3] = new Button(); operatorKeys[3].setText("-");
@@ -120,21 +111,21 @@ public class KeyboardView extends HBox {
         otherButton[0] = new Button(); otherButton[0].setText("Clear");
         otherButton[0].getStyleClass().add("clearButton"); otherButton[0].setTooltip(new Tooltip("Ripulisce lo stack."));
         otherButton[1] = new Button(); otherButton[1].setText("Drop");
-        otherButton[1].getStyleClass().add("otherButton");
+        otherButton[1].getStyleClass().add("otherButton"); otherButton[1].setTooltip(new Tooltip("Elimina l' elemento in cima allo stack."));
         otherButton[2] = new Button(); otherButton[2].setText("Dup");
-        otherButton[2].getStyleClass().add("otherButton");
+        otherButton[2].getStyleClass().add("otherButton"); otherButton[2].setTooltip(new Tooltip("Duplica l' elemento in cima allo stack."));
         otherButton[3] = new Button(); otherButton[3].setText("Over");
-        otherButton[3].getStyleClass().add("otherButton");
+        otherButton[3].getStyleClass().add("otherButton"); otherButton[3].setTooltip(new Tooltip("Elimina il secondo elemento in cima allo stack."));
         otherButton[8] = new Button(); otherButton[8].setText("Swap");
-        otherButton[8].getStyleClass().add("otherButton");
+        otherButton[8].getStyleClass().add("otherButton"); otherButton[8].setTooltip(new Tooltip("Scambia di posizione i due elementi in cima allo stack."));
         otherButton[4] = new Button(); otherButton[4].setText(">" + String.valueOf(currentVariable));
-        otherButton[4].getStyleClass().add("otherButton");
+        otherButton[4].getStyleClass().add("otherButton"); otherButton[4].setTooltip(new Tooltip("Associa alla variabile selezionata\n l' elemento in cima allo stack."));
         otherButton[5] = new Button(); otherButton[5].setText("<" + String.valueOf(currentVariable));
-        otherButton[5].getStyleClass().add("otherButton");
+        otherButton[5].getStyleClass().add("otherButton"); otherButton[5].setTooltip(new Tooltip("Inserisce il valore associato alla variabile\nselezionata in cima allo stack."));
         otherButton[6] = new Button(); otherButton[6].setText("+" + String.valueOf(currentVariable));
-        otherButton[6].getStyleClass().add("otherButton");
+        otherButton[6].getStyleClass().add("otherButton"); otherButton[6].setTooltip(new Tooltip("Somma il valore dell' elemento in cima\nallo stack al valore della variabile selezionata."));
         otherButton[7] = new Button(); otherButton[7].setText("-" + String.valueOf(currentVariable));
-        otherButton[7].getStyleClass().add("otherButton");
+        otherButton[7].getStyleClass().add("otherButton"); otherButton[7].setTooltip(new Tooltip("Sottrae il valore dell' elemento in cima\nallo stack al valore della variabile selezionata."));
         
         chooseVar.setText("Scegli una variabile:"); chooseVar.getStyleClass().add("varChooseLabel");
         varMenu.getStyleClass().add("varMenu");
@@ -142,7 +133,6 @@ public class KeyboardView extends HBox {
     
     private void placeDigitsButtons() {
         GridPane pane = new GridPane();
-        //pane.setAlignment(Pos.CENTER);
         for(int i = 0; i < DIGITS - 1; i++) {
             pane.add(numberKeys[i], i % 3, i / 3);
         }
@@ -169,7 +159,6 @@ public class KeyboardView extends HBox {
     
     private void placeOtherButtons() {
         GridPane vPane = new GridPane();
-        //pane.setAlignment(Pos.CENTER);
         for(int i = 0; i < OTHER/2; i++) {
             vPane.add(otherButton[i], 0, i);
         }
