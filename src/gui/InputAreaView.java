@@ -7,7 +7,6 @@ package gui;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 
 /**
@@ -16,8 +15,8 @@ import javafx.scene.layout.VBox;
  */
 public class InputAreaView extends VBox {
     
-    KeyboardView keyboardRow;
-    TextArea display;
+    public KeyboardView keyboardRow;
+    public TextArea display;
     
     public InputAreaView() {
         super();

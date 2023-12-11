@@ -5,6 +5,7 @@
  */
 package complexnumber;
 
+import exceptions.SyntaxErrorException;
 import exceptions.SystemErrorException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,11 +33,13 @@ public class Stack {
         stack.add(0, n);
     }
     
-    public ComplexNumber pop() {
+    public ComplexNumber pop() throws SyntaxErrorException {
+        if(isEmpty()) throw new SyntaxErrorException("Si è verificato un errore.\nLo stack è vuoto.");
         return (ComplexNumber)stack.remove(0);
     }
     
-    public ComplexNumber peek() {
+    public ComplexNumber peek() throws SyntaxErrorException {
+        if(isEmpty()) throw new SyntaxErrorException("Si è verificato un errore.\nLo stack è vuoto.");
         return (ComplexNumber)stack.get(0);
     }
     

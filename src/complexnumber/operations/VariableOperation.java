@@ -5,6 +5,7 @@
  */
 package complexnumber.operations;
 
+import static gui.ContainerView.inputArea;
 import static calcolatriceinterfaccia.CalcolatriceInterfaccia.currentVariable;
 import complexnumber.ComplexNumber;
 import complexnumber.Stack;
@@ -12,8 +13,7 @@ import complexnumber.variables.Variable;
 import complexnumber.variables.Variables;
 import exceptions.SyntaxErrorException;
 import exceptions.SystemErrorException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import static javafx.application.Platform.exit;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
@@ -40,16 +40,19 @@ public class VariableOperation extends Operation {
 
     @Override
     public void solveOperation() throws SyntaxErrorException {
-
         if (this.operator.equals(">")) {
-
-            ComplexNumber n = super.getStack().peek();
-            Variable v = new Variable(this.name, n.toString());
-            System.out.println(n.toString());
-            vars.add(v);
-            //view.keyboardRow.list.set((int)(currentVariable - 97), currentVariable + " = " + vars.search(currentVariable).toString());
-
-        } else if (this.operator.equals("<")) {
+            try {
+                ComplexNumber n = super.getStack().peek();
+                Variable v = new Variable(this.name, n.toString());
+                System.out.println(n.toString());
+                vars.add(v);
+                inputArea.keyboardRow.list.set((int)(currentVariable - 97), currentVariable + " = " + vars.search(currentVariable).toString());
+            } catch (SyntaxErrorException ex) {
+                Alert dialog = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.CLOSE);
+                dialog.setTitle("Stack vuoto"); dialog.showAndWait(); exit();
+            }
+        } 
+        else if (this.operator.equals("<")) {
             try {
                 Variable v = vars.search(name);
                 ComplexNumber n = new ComplexNumber(v.toString());
@@ -60,27 +63,30 @@ public class VariableOperation extends Operation {
                     dialog.setTitle("Stack pieno"); dialog.showAndWait();
                 }
             } catch (NullPointerException ex) {
-                throw new SyntaxErrorException("Errore variabile.");
+                throw new SyntaxErrorException("Si è verificato un' errore.\nLa variabile richiesta non è stata allocata.");
             }
-
-        } else if (this.operator.equals("+")) {
+        } 
+        else if (this.operator.equals("+")) {
             try {
                 ComplexNumber n = super.getStack().pop();
                 Variable v = vars.search(name);
                 vars.remove(name);
                 vars.add(new Variable(name, v.sum(n).toString()));
+                
+                inputArea.keyboardRow.list.set((int)(currentVariable - 97), currentVariable + " = " + vars.search(currentVariable).toString());
             } catch (NullPointerException ex) {
-                throw new SyntaxErrorException("Errore variabile.");
+                throw new SyntaxErrorException("Si è verificato un' errore.\nLa variabile richiesta non è stata allocata.");
             }
-
-        } else if (this.operator.equals("-")) {
+        } 
+        else if (this.operator.equals("-")) {
             try {
                 ComplexNumber n = super.getStack().pop();
                 Variable v = vars.search(name);
                 vars.remove(name);
                 vars.add(new Variable(name, v.sub(n).toString()));
+                inputArea.keyboardRow.list.set((int)(currentVariable - 97), currentVariable + " = " + vars.search(currentVariable).toString());
             } catch (NullPointerException ex) {
-                throw new SyntaxErrorException("Errore variabile.");
+                throw new SyntaxErrorException("Si è verificato un' errore.\nLa variabile richiesta non è stata allocata.");
             }
 
         }

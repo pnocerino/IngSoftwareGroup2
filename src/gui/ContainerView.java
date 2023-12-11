@@ -14,7 +14,7 @@ import javafx.scene.layout.HBox;
  */
 public class ContainerView extends HBox {
     
-    InputAreaView inputArea;
+    public static InputAreaView inputArea;
     GUIController inputAreaController;
     StackView stackView;
     
