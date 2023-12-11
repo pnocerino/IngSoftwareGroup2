@@ -34,7 +34,7 @@ public class MathOperation extends Operation{
         
         ComplexNumber n = super.getStack().pop();
 
-        if(this.operator.equals("\\+\\-")){
+        if(this.operator.equals("+-")){
             super.getStack().push(n.signChange());
         }else{
             ComplexNumber[] array= n.squareRoot();

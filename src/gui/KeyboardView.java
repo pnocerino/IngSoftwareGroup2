@@ -6,11 +6,10 @@
 package gui;
 
 import static calcolatriceinterfaccia.CalcolatriceInterfaccia.currentVariable;
-import complexnumber.variables.Variables;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -31,6 +30,7 @@ public class KeyboardView extends HBox {
     //Variables variablesClass = new Variables();
     public Label chooseVar;
     public ComboBox varMenu;
+    public ObservableList<String> list;
     
     public Button numberKeys[];
     public Button operatorKeys[];
@@ -47,7 +47,9 @@ public class KeyboardView extends HBox {
         /*for(int i = 0; i < 26; i++) {
             variables.add((char)(65 + i));
         }*/
-        varMenu = new ComboBox(FXCollections.observableArrayList(new ArrayList<Character>(Arrays.asList('a', 'b'))));
+        list = FXCollections.observableArrayList();
+        list.add("a"); list.add("b");
+        varMenu = new ComboBox(list);
         //var = new TilePane(varMenu); var.getStyleClass().add("varTilePane");
         initDigitsButtons();
         initOperatorButtons(); 

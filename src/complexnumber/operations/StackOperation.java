@@ -49,10 +49,10 @@ public class StackOperation extends Operation{
     }
     
     public void swap(){
-        ComplexNumber n1 = super.getStack().pop();
-        ComplexNumber n2 = super.getStack().pop();
-        super.getStack().push(n2);
-        super.getStack().push(n1);
+        ComplexNumber top = super.getStack().pop();
+        ComplexNumber bot = super.getStack().pop();
+        super.getStack().push(top);
+        super.getStack().push(bot);
     }
     
     public void over(){

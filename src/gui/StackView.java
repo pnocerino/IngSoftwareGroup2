@@ -42,10 +42,10 @@ public class StackView extends VBox {
             protected void updateItem(ComplexNumber item, boolean empty) {
                 super.updateItem(item, empty);
 
-                if (empty || item == null || item.getNumber() == null) {
+                if (empty || item == null || item.toString() == null) {
                     setText(null);
                 } else {
-                    setText(item.getNumber());
+                    setText(item.toString());
                 }
             }
         });

@@ -9,6 +9,7 @@ import static calcolatriceinterfaccia.CalcolatriceInterfaccia.currentVariable;
 import complexnumber.Command;
 import complexnumber.ComplexNumber;
 import complexnumber.Stack;
+import complexnumber.variables.Variable;
 import complexnumber.variables.Variables;
 import exceptions.SyntaxErrorException;
 import java.util.logging.Level;
@@ -21,6 +22,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -59,16 +61,21 @@ public class GUIController {
 
         
         view.display.setOnKeyPressed((KeyEvent ke) -> {
-            if(ke.getCode().equals(KeyCode.ENTER)) { stack.push(new ComplexNumber(view.display.getText())); view.display.setText(""); ke.consume();}
-            //if(ke.getCode().equals(KeyCode.COMMA)) { view.display.setText(view.display.getText() + "."); };
+            if(ke.getCode().equals(KeyCode.ENTER)) { 
+                stack.push(new ComplexNumber(view.display.getText())); view.display.setText(""); ke.consume();
+            }
+            
+    
         
         });
      
         keys.operatorKeys[0].setOnAction(e -> { 
                 Command command = new Command(view.display.getText()); 
-                view.display.setText(""); 
+                view.display.setText("");
+                //view.keyboardRow.list.set((int)(currentVariable - 97), currentVariable + " = " + vars.search(currentVariable).toString());
                 try {
                     command.executeCommand(stack, vars);
+                    view.keyboardRow.list.set((int)(currentVariable - 97), currentVariable + " = " + vars.search(currentVariable).toString());
                 } catch (SyntaxErrorException ex) {
                     Alert dialog = new Alert(AlertType.ERROR, ex.getMessage(), ButtonType.CLOSE);
                     dialog.showAndWait(); exit();
@@ -110,16 +117,36 @@ public class GUIController {
             }
 } );
         
-        keys.otherButton[4].setOnAction(e -> { try {
-            Command command = new Command(">" + currentVariable); command.executeCommand(stack, vars);
-            } catch (SyntaxErrorException ex) {
-                Logger.getLogger(GUIController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        keys.otherButton[4].setOnAction(e -> { //try {
+            view.display.setText(view.display.getText() + ">" + currentVariable);
+            //Command command = new Command(">" + currentVariable); command.executeCommand(stack, vars);
+            //view.keyboardRow.list.set((int)(currentVariable - 97), currentVariable + " = " + vars.search(currentVariable).toString());
+            /*} catch (SyntaxErrorException ex) {
+                Alert dialog = new Alert(AlertType.ERROR, "Si è verificato un errore di sintassi.", ButtonType.CLOSE);
+                dialog.showAndWait(); exit();
+            }*/
 } );
         keys.otherButton[5].setOnAction(e -> { try {
             Command command = new Command("<" + currentVariable); command.executeCommand(stack, vars);
             } catch (SyntaxErrorException ex) {
-                Logger.getLogger(GUIController.class.getName()).log(Level.SEVERE, null, ex);
+                Alert dialog = new Alert(AlertType.ERROR, ex.getMessage(), ButtonType.CLOSE);
+                dialog.showAndWait(); exit();
+            }
+} );
+        keys.otherButton[6].setOnAction(e -> { try {
+            Command command = new Command("+" + currentVariable); command.executeCommand(stack, vars);
+            view.keyboardRow.list.set((int)(currentVariable - 97), currentVariable + " = " + vars.search(currentVariable).toString());
+            } catch (SyntaxErrorException ex) {
+                Alert dialog = new Alert(AlertType.ERROR, ex.getMessage(), ButtonType.CLOSE);
+                dialog.showAndWait(); exit();
+            }
+} );
+        keys.otherButton[7].setOnAction(e -> { try {
+            Command command = new Command("-" + currentVariable); command.executeCommand(stack, vars);
+            view.keyboardRow.list.set((int)(currentVariable - 97), currentVariable + " = " + vars.search(currentVariable).toString());
+            } catch (SyntaxErrorException ex) {
+                Alert dialog = new Alert(AlertType.ERROR, ex.getMessage(), ButtonType.CLOSE);
+                dialog.showAndWait(); exit();
             }
 } );
         
@@ -137,7 +164,7 @@ public class GUIController {
         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                currentVariable = (char)keys.varMenu.getValue();
+                currentVariable = (char)(((String)keys.varMenu.getValue()).charAt(0));
                 keys.otherButton[4].setText(">" + currentVariable);
                 keys.otherButton[5].setText("<" + currentVariable);
                 keys.otherButton[6].setText("+" + currentVariable);
@@ -151,23 +178,13 @@ public class GUIController {
         keys.otherButton[0].disableProperty().bind(Bindings.isEmpty(stack.stack));
         keys.operatorKeys[0].disableProperty().bind(Bindings.equal("", view.display.textProperty()));
         keys.operatorKeys[1].disableProperty().bind(Bindings.equal("", view.display.textProperty()));
+        for(int i = 4; i < 8; i++) {
+            keys.otherButton[i].disableProperty().bind(keys.varMenu.valueProperty().isNull());
+        }
+        //keys.otherButton[4].disableProperty().bind(vars.search(currentVariable) == null);
         
         view.display.setTextFormatter(new TextFormatter<String>(change -> 
-            change.getControlNewText().length() <= 15 ? change : null));
-        
-        
-        
-        /*UnaryOperator<Change> filter = change -> {
-            String text = change.getText();
-
-            if (text.matches("[^abcdefg,]*")) {
-               return null;
-            }
-
-            return change;
-        };
-        TextFormatter<String> textFormatter = new TextFormatter<>(filter);
-        view.display.setTextFormatter(textFormatter);*/
+            change.getControlNewText().length() <= 15 ? change : null));        
     }
     
     private void buttonPressed(ActionEvent e) {

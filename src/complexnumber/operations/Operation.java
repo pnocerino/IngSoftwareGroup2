@@ -6,6 +6,7 @@
 package complexnumber.operations;
 
 import complexnumber.Stack;
+import exceptions.SyntaxErrorException;
 
 /**
  *
@@ -29,6 +30,6 @@ public abstract class Operation {
         return stack;
     }
     
-    public abstract void solveOperation();
+    public abstract void solveOperation() throws SyntaxErrorException;
     
 }

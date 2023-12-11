@@ -81,10 +81,10 @@ public class ComplexNumber {
     public ComplexNumber divide(ComplexNumber n) {
         //(a + bi) / (c + di) = (a + bi)(c - di) / (c + di)(c - di) = (numRE / den) + (numIM / den);
         //gestire errore divisione per 0;
-        ComplexNumber conj = new ComplexNumber(n.getNumber()); conj.imPart = -(conj.imPart);
+        ComplexNumber conj = new ComplexNumber(n.toString()); conj.imPart = -(conj.imPart);
         ComplexNumber div = new ComplexNumber("0");
-        ComplexNumber num = new ComplexNumber(this.multiply(conj).getNumber());
-        ComplexNumber den = new ComplexNumber(n.multiply(conj).getNumber());
+        ComplexNumber num = new ComplexNumber(this.multiply(conj).toString());
+        ComplexNumber den = new ComplexNumber(n.multiply(conj).toString());
         try {
             if(den.realPart == 0) throw new MathErrorException("Si è verificato un errore matematico.\nImpossibile dividere per 0.\n");
             div.realPart = num.realPart / den.realPart;
@@ -117,7 +117,7 @@ public class ComplexNumber {
     }
     
     public ComplexNumber signChange() {
-        ComplexNumber n = new ComplexNumber(this.getNumber());
+        ComplexNumber n = new ComplexNumber(this.toString());
         n.imPart = -(n.imPart); n.realPart = -(n.realPart);
         return n;
     }
@@ -131,8 +131,8 @@ public class ComplexNumber {
         return imPart;
     }
     
-    
-    public String getNumber() {
+    @Override
+    public String toString() {
         NumberFormat nf = NumberFormat.getNumberInstance(Locale.ENGLISH);
         DecimalFormat format = (DecimalFormat)nf; format.setGroupingUsed(false);
         if(realPart == 0 && imPart == 0) return "0";
@@ -141,14 +141,10 @@ public class ComplexNumber {
         else if(imPart == 0) return format.format(realPart);
         else if(realPart == 0) return format.format(imPart) + "i";
         else if(imPart > 0) return format.format(realPart) + " + " + format.format(imPart) + "i";
+        else if(imPart < 0) return format.format(realPart) + " - " + format.format(-imPart) + "i";
         else if(imPart == 1) return format.format(realPart) + " + i";
         else if(imPart == -1) return format.format(realPart) + "- i";
         return format.format(realPart) + " " + format.format(imPart) + " i";
-    }
-    @Override
-    public String toString() {
-        if(realPart == 0 && imPart == 0) return "0";
-        return "0";
     }
     
 }
