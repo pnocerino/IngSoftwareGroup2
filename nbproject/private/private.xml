@@ -3,17 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/sherr/Documents/NetBeansProjects/CalcolatriceInterfaccia/src/gui/InputAreaView.java</file>
-            <file>file:/C:/Users/sherr/Documents/NetBeansProjects/CalcolatriceInterfaccia/src/scientificcalculator/complexnumber/operations/VariableOperation.java</file>
-            <file>file:/C:/Users/sherr/Documents/NetBeansProjects/CalcolatriceInterfaccia/src/gui/KeyboardView.java</file>
-            <file>file:/C:/Users/sherr/Documents/NetBeansProjects/CalcolatriceInterfaccia/src/gui/GUIController.java</file>
-            <file>file:/C:/Users/sherr/Documents/NetBeansProjects/CalcolatriceInterfaccia/src/gui/StackView.java</file>
-            <file>file:/C:/Users/sherr/Documents/NetBeansProjects/CalcolatriceInterfaccia/src/scientificcalculator/complexnumber/Command.java</file>
-            <file>file:/C:/Users/sherr/Documents/NetBeansProjects/CalcolatriceInterfaccia/src/scientificcalculator/complexnumber/variables/Variables.java</file>
-            <file>file:/C:/Users/sherr/Documents/NetBeansProjects/CalcolatriceInterfaccia/src/scientificcalculator/complexnumber/operations/Operation.java</file>
-            <file>file:/C:/Users/sherr/Documents/NetBeansProjects/CalcolatriceInterfaccia/src/scientificcalculator/complexnumber/operations/MathOperation.java</file>
-            <file>file:/C:/Users/sherr/Documents/NetBeansProjects/CalcolatriceInterfaccia/src/scientificcalculator/complexnumber/operations/StackOperation.java</file>
-            <file>file:/C:/Users/sherr/Documents/NetBeansProjects/CalcolatriceInterfaccia/src/scientificcalculator/ScientificCalculator.java</file>
+            <file>file:/C:/Users/utente/Documents/NetBeansProjects/ScientificCalculator/src/scientificcalculator/complexnumber/operations/StackOperation.java</file>
+            <file>file:/C:/Users/utente/Documents/NetBeansProjects/ScientificCalculator/src/scientificcalculator/complexnumber/operations/VariableOperation.java</file>
         </group>
     </open-files>
 </project-private>

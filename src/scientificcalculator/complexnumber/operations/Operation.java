@@ -1,7 +1,7 @@
 
 package scientificcalculator.complexnumber.operations;
 
-import complexnumber.Stack;
+import scientificcalculator.complexnumber.Stack;
 import exceptions.SyntaxErrorException;
 
 public abstract class Operation {

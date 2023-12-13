@@ -2,7 +2,7 @@
 package gui;
 
 import static scientificcalculator.ScientificCalculator.currentVariable;
-import complexnumber.Stack;
+import scientificcalculator.complexnumber.Stack;
 import exceptions.SyntaxErrorException;
 import static javafx.application.Platform.exit;
 import javafx.beans.binding.Bindings;
@@ -111,9 +111,6 @@ public class GUIController {
     private void initBindings() {
         keys.otherButton[0].disableProperty().bind(Bindings.isEmpty(stack.stack)); 
         keys.otherButton[1].disableProperty().bind(Bindings.isEmpty(stack.stack)); 
-        keys.otherButton[2].disableProperty().bind(Bindings.isEmpty(stack.stack)); 
-        keys.otherButton[3].disableProperty().bind(Bindings.lessThan(Bindings.size(stack.stack), 2));
-        keys.otherButton[8].disableProperty().bind(Bindings.lessThan(Bindings.size(stack.stack), 2));
         
         keys.operatorKeys[0].disableProperty().bind(Bindings.equal("", view.display.textProperty()));
         keys.operatorKeys[1].disableProperty().bind(Bindings.equal("", view.display.textProperty()));

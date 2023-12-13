@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package complexnumber;
+package scientificcalculator.complexnumber;
 
 import exceptions.SyntaxErrorException;
 import exceptions.SystemErrorException;
@@ -19,9 +19,9 @@ public class Stack {
     public ObservableList<ComplexNumber> stack;
     private final int capacity;
     
-    public Stack() {
+    public Stack(int capacity) {
         this.stack = FXCollections.observableArrayList();
-        this.capacity = 24;
+        this.capacity = capacity;
     }
     
     public ObservableList getStack() {

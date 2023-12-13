@@ -1,7 +1,7 @@
 package scientificcalculator.complexnumber;
 
-import complexnumber.ComplexNumber;
-import complexnumber.Stack;
+import scientificcalculator.complexnumber.ComplexNumber;
+import scientificcalculator.complexnumber.Stack;
 import static scientificcalculator.ScientificCalculator.currentVariable;
 import exceptions.SyntaxErrorException;
 import exceptions.SystemErrorException;

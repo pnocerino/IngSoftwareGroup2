@@ -1,8 +1,8 @@
 
 package gui;
 
-import complexnumber.ComplexNumber;
-import complexnumber.Stack;
+import scientificcalculator.complexnumber.ComplexNumber;
+import scientificcalculator.complexnumber.Stack;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -14,7 +14,7 @@ public class StackView extends VBox {
     Label memoryLabel;
     
     public ListView<ComplexNumber> listView;
-    public Stack stackClass = new Stack();
+    public Stack stackClass = new Stack(24);
     public ObservableList<ComplexNumber> stackList = stackClass.getStack();
     
     public StackView() {

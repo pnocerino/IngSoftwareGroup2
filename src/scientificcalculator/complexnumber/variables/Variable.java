@@ -1,7 +1,7 @@
 
 package scientificcalculator.complexnumber.variables;
 
-import complexnumber.ComplexNumber;
+import scientificcalculator.complexnumber.ComplexNumber;
 
 public class Variable extends ComplexNumber {
     
