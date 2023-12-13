@@ -106,8 +106,10 @@ public class ComplexNumber {
 
         roots[0].realPart = Math.sqrt(modulus) * Math.cos(angles / 2);
         roots[0].imPart = Math.sqrt(modulus) * Math.sin(angles / 2);
+        if(Math.round(roots[0].realPart) == 0) roots[0].realPart = 0;
         roots[1].realPart = -(Math.sqrt(modulus) * Math.cos(angles / 2));
         roots[1].imPart = -(Math.sqrt(modulus) * Math.sin(angles / 2));
+        if(Math.round(roots[1].realPart) == 0) roots[1].realPart = 0;
 
         return roots;
 
