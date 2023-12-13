@@ -133,7 +133,10 @@ public class Command {
                 o.solveOperation();
             }
         } else { 
-            throw new SyntaxErrorException("Syntax Error");
+            throw new SyntaxErrorException("Si è verificato un errore di sintassi.\nInserire un operatore o operando in un formato valido.\n\n"
+                    + "Per inserire un numero complesso, utilizzare un formato del tipo \"a + bi\", es: \"2 + 2i\".\n\n"
+                    + "Per inserire un operatore, utilizzare: \"+\", \"-\", \"*\", \"/\", \"sqrt\" o \"+-\".\n\n"
+                    + "Per inserire un comando, utilizzare un formato del tipo \"clear\", \"dup\", o \">a\".");
         }
         
         
