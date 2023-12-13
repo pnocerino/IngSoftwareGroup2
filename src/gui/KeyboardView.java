@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gui;
 
-import static calcolatriceinterfaccia.CalcolatriceInterfaccia.currentVariable;
+import static scientificcalculator.ScientificCalculator.currentVariable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -17,15 +13,8 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
-
-/**
- *
- * @author sherr
- */
 public class KeyboardView extends HBox {
     
-    //public TilePane var;
-    //Variables variablesClass = new Variables();
     public Label chooseVar;
     public ComboBox varMenu;
     public ObservableList<String> list;
@@ -77,8 +66,6 @@ public class KeyboardView extends HBox {
         numberKeys[DIGITS + 2] = new Button();
         numberKeys[DIGITS + 2].setText(".");
         numberKeys[DIGITS + 2].getStyleClass().add("keysButton");
-        
-        
     }
     
     private void initOperatorButtons() {
@@ -100,9 +87,6 @@ public class KeyboardView extends HBox {
         operatorKeys[6].getStyleClass().add("operatorButton");
         operatorKeys[7] = new Button(); operatorKeys[7].setText("±"); operatorKeys[7].setTooltip(new Tooltip("Effettua l' inversione dei segni."));
         operatorKeys[7].getStyleClass().add("operatorButton");
-        
-        //⌫
-        
     }
     
     private void initOtherButtons() {    
@@ -152,9 +136,6 @@ public class KeyboardView extends HBox {
         }
         opPane.setHgap(5); opPane.setVgap(5);
         this.getChildren().add(opPane);
-        
-        
-        
     }
     
     private void placeOtherButtons() {
@@ -172,5 +153,4 @@ public class KeyboardView extends HBox {
         this.getChildren().add(vPane);
         
     }
-    
 }

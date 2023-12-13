@@ -1,20 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gui;
 
-import static calcolatriceinterfaccia.CalcolatriceInterfaccia.currentVariable;
-import complexnumber.Command;
+import static scientificcalculator.ScientificCalculator.currentVariable;
 import complexnumber.Stack;
-import complexnumber.variables.Variables;
 import exceptions.SyntaxErrorException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import static javafx.application.Platform.exit;
 import javafx.beans.binding.Bindings;
-import javafx.beans.value.ObservableObjectValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -24,11 +15,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import scientificcalculator.complexnumber.Command;
+import scientificcalculator.complexnumber.variables.Variables;
 
-/**
- *
- * @author sherr
- */
 public class GUIController {
     
     
@@ -64,16 +53,12 @@ public class GUIController {
                 view.display.setText("");
                 try {
                     command.executeCommand(stack, vars);
-                    //view.keyboardRow.list.set((int)(currentVariable - 97), currentVariable + " = " + vars.search(currentVariable).toString());
                 } catch (SyntaxErrorException ex) {
                     Alert dialog = new Alert(AlertType.ERROR, ex.getMessage(), ButtonType.CLOSE);
                     dialog.showAndWait(); exit();
                 } 
                 ke.consume();
             }
-            
-    
-        
         });
      
         keys.operatorKeys[0].setOnAction(e -> { 
@@ -81,126 +66,30 @@ public class GUIController {
                 view.display.setText("");
                 try {
                     command.executeCommand(stack, vars);
-                    //view.keyboardRow.list.set((int)(currentVariable - 97), currentVariable + " = " + vars.search(currentVariable).toString());
                 } catch (SyntaxErrorException ex) {
                     Alert dialog = new Alert(AlertType.ERROR, ex.getMessage(), ButtonType.CLOSE);
                     dialog.showAndWait(); exit();
                 }
         } ); 
         keys.operatorKeys[1].setOnAction(e -> view.display.setText(view.display.getText().substring(0, view.display.getText().length() - 1)));
-        keys.otherButton[0].setOnAction(e -> { view.display.setText(view.display.getText() + "clear");
-            /*try {
-            //view.display.setText(""); Command command = new Command("clear"); command.executeCommand(stack, vars);
-            Command command = new Command(view.display.getText()); command.executeCommand(stack, vars);
-            } catch (SyntaxErrorException ex) {
-                Logger.getLogger(GUIController.class.getName()).log(Level.SEVERE, null, ex);
-            }*/
-} );
-        keys.otherButton[1].setOnAction(e -> { view.display.setText(view.display.getText() + "drop");
-            /*try {
-            Command command = new Command("drop"); command.executeCommand(stack, vars);
-            } catch (SyntaxErrorException ex) {
-                Alert dialog = new Alert(AlertType.ERROR, "Si è verificato un errore di sintassi.", ButtonType.CLOSE);
-                dialog.showAndWait(); exit();
-            }*/
-} );
-        keys.otherButton[2].setOnAction(e -> { view.display.setText(view.display.getText() + "dup");
-            /*try {
-            Command command = new Command("dup"); command.executeCommand(stack, vars);
-            } catch (SyntaxErrorException ex) {
-                Alert dialog = new Alert(AlertType.ERROR, "Si è verificato un errore di sintassi.", ButtonType.CLOSE);
-                dialog.showAndWait(); exit();
-            }*/
-} );
-        keys.otherButton[3].setOnAction(e -> { view.display.setText(view.display.getText() + "over");
-            /*try {
-            Command command = new Command("over"); command.executeCommand(stack, vars);
-            } catch (SyntaxErrorException ex) {
-                Alert dialog = new Alert(AlertType.ERROR, "Si è verificato un errore di sintassi.", ButtonType.CLOSE);
-                dialog.showAndWait(); exit();
-            }*/
-} );
-        keys.otherButton[8].setOnAction(e -> { view.display.setText(view.display.getText() + "swap");
-            /*try {
-            Command command = new Command("swap"); command.executeCommand(stack, vars);
-            } catch (SyntaxErrorException ex) {
-                Alert dialog = new Alert(AlertType.ERROR, "Si è verificato un errore di sintassi.", ButtonType.CLOSE);
-                dialog.showAndWait(); exit();
-            }*/
-} );
         
-        keys.otherButton[4].setOnAction(e -> { view.display.setText(view.display.getText() + ">" + currentVariable);
-            /*try {
-            Command command = new Command(">" + currentVariable); command.executeCommand(stack, vars);
-            //Command command = new Command(">" + currentVariable); command.executeCommand(stack, vars);
-            //view.keyboardRow.list.set((int)(currentVariable - 97), currentVariable + " = " + vars.search(currentVariable).toString());
-            } catch (SyntaxErrorException ex) {
-                Alert dialog = new Alert(AlertType.ERROR, "Si è verificato un errore di sintassi.", ButtonType.CLOSE);
-                dialog.showAndWait(); exit();
-            }*/
-} );
-        keys.otherButton[5].setOnAction(e -> { view.display.setText(view.display.getText() + "<" + currentVariable);
-            //try {
-            /*Command command = new Command("<" + currentVariable); command.executeCommand(stack, vars);
-            } catch (SyntaxErrorException ex) {
-                Alert dialog = new Alert(AlertType.ERROR, ex.getMessage(), ButtonType.CLOSE);
-                dialog.showAndWait(); exit();
-            }*/
-} );
-        keys.otherButton[6].setOnAction(e -> { view.display.setText(view.display.getText() + "+" + currentVariable);
-            /*try {
-            Command command = new Command("+" + currentVariable); command.executeCommand(stack, vars);
-            //view.keyboardRow.list.set((int)(currentVariable - 97), currentVariable + " = " + vars.search(currentVariable).toString());
-            } catch (SyntaxErrorException ex) {
-                Alert dialog = new Alert(AlertType.ERROR, ex.getMessage(), ButtonType.CLOSE);
-                dialog.showAndWait(); exit();
-            }*/
-} );
-        keys.otherButton[7].setOnAction(e -> { view.display.setText(view.display.getText() + "-" + currentVariable);
-            /*try {
-            Command command = new Command("-" + currentVariable); command.executeCommand(stack, vars);
-            //view.keyboardRow.list.set((int)(currentVariable - 97), currentVariable + " = " + vars.search(currentVariable).toString());
-            } catch (SyntaxErrorException ex) {
-                Alert dialog = new Alert(AlertType.ERROR, ex.getMessage(), ButtonType.CLOSE);
-                dialog.showAndWait(); exit();
-            }*/
-} );
+        keys.otherButton[0].setOnAction(e -> { view.display.setText(view.display.getText() + "clear"); } );
+        keys.otherButton[1].setOnAction(e -> { view.display.setText(view.display.getText() + "drop"); } );
+        keys.otherButton[2].setOnAction(e -> { view.display.setText(view.display.getText() + "dup"); } );
+        keys.otherButton[3].setOnAction(e -> { view.display.setText(view.display.getText() + "over"); } );
+        keys.otherButton[8].setOnAction(e -> { view.display.setText(view.display.getText() + "swap"); } );
+        
+        keys.otherButton[4].setOnAction(e -> { view.display.setText(view.display.getText() + ">" + currentVariable); } );
+        keys.otherButton[5].setOnAction(e -> { view.display.setText(view.display.getText() + "<" + currentVariable); } );
+        keys.otherButton[6].setOnAction(e -> { view.display.setText(view.display.getText() + "+" + currentVariable); } );
+        keys.otherButton[7].setOnAction(e -> { view.display.setText(view.display.getText() + "-" + currentVariable); } );
         
         keys.operatorKeys[2].setOnAction(e -> buttonPressed(e));
         keys.operatorKeys[3].setOnAction(e -> buttonPressed(e));
-        keys.operatorKeys[4].setOnAction(e -> { view.display.setText(view.display.getText() + "*");
-            /*Command command = new Command("*"); try {
-                command.executeCommand(stack, vars);
-            } catch (SyntaxErrorException ex) {
-                Alert dialog = new Alert(AlertType.ERROR, ex.getMessage(), ButtonType.CLOSE);
-                dialog.showAndWait(); exit();
-            }*/
-});
-        keys.operatorKeys[5].setOnAction(e -> buttonPressed(e)
-            /*   { //view.display.setText(view.display.getText() + "*");
-            Command command = new Command("/"); try {
-                command.executeCommand(stack, vars);
-            } catch (SyntaxErrorException ex) {
-                Alert dialog = new Alert(AlertType.ERROR, ex.getMessage(), ButtonType.CLOSE);
-                dialog.showAndWait(); exit();
-            }*/
-        );
-        keys.operatorKeys[6].setOnAction(e -> { view.display.setText(view.display.getText() + "sqrt"); 
-            /*Command command = new Command("sqrt"); try {
-                command.executeCommand(stack, vars);
-            } catch (SyntaxErrorException ex) {
-                Alert dialog = new Alert(AlertType.ERROR, ex.getMessage(), ButtonType.CLOSE);
-                dialog.showAndWait(); exit();
-            }*/
-        });
-        keys.operatorKeys[7].setOnAction(e -> { view.display.setText(view.display.getText() + "+-"); 
-            /*Command command = new Command("+-"); try {
-                command.executeCommand(stack, vars);
-            } catch (SyntaxErrorException ex) {
-                Alert dialog = new Alert(AlertType.ERROR, ex.getMessage(), ButtonType.CLOSE);
-                dialog.showAndWait(); exit();
-            }*/
-        });
+        keys.operatorKeys[4].setOnAction(e -> { view.display.setText(view.display.getText() + "*"); });
+        keys.operatorKeys[5].setOnAction(e -> buttonPressed(e) );
+        keys.operatorKeys[6].setOnAction(e -> { view.display.setText(view.display.getText() + "sqrt"); });
+        keys.operatorKeys[7].setOnAction(e -> { view.display.setText(view.display.getText() + "+-"); });
         
         
     }
@@ -226,14 +115,11 @@ public class GUIController {
         keys.otherButton[3].disableProperty().bind(Bindings.lessThan(Bindings.size(stack.stack), 2));
         keys.otherButton[8].disableProperty().bind(Bindings.lessThan(Bindings.size(stack.stack), 2));
         
-        //while(vars.search(currentVariable) == null) keys.otherButton[5].disableProperty();
-        
         keys.operatorKeys[0].disableProperty().bind(Bindings.equal("", view.display.textProperty()));
         keys.operatorKeys[1].disableProperty().bind(Bindings.equal("", view.display.textProperty()));
         for(int i = 4; i < 8; i++) {
             keys.otherButton[i].disableProperty().bind(keys.varMenu.valueProperty().isNull());
         }
-        
         view.display.setTextFormatter(new TextFormatter<String>(change -> change.getControlNewText().length() <= 16 ? change : null));        
     }
     

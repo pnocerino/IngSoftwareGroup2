@@ -8,8 +8,8 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="CalcolatriceInterfaccia.jar" size="38844" download="eager" />
+    <jar href="CalcolatriceInterfaccia.jar" size="39315" download="eager" />
   </resources>
-  <jfx:javafx-desc  width="800" height="600" main-class="calcolatriceinterfaccia.CalcolatriceInterfaccia"  name="CalcolatriceInterfaccia" />
+  <jfx:javafx-desc  width="800" height="600" main-class="scientificcalculator.ScientificCalculator"  name="CalcolatriceInterfaccia" />
   <update check="always"/>
 </jnlp>
