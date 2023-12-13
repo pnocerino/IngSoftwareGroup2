@@ -39,7 +39,7 @@ public class StackView extends VBox {
         this.getChildren().add(memoryLabel);
         listView = new ListView(); listView.getStyleClass().add("stackLabel");
         listView.setItems(stackList);
-        initTest();
+        //initTest();
         listView.setCellFactory(param -> new ListCell<ComplexNumber>() {
             @Override
             protected void updateItem(ComplexNumber item, boolean empty) {
@@ -55,7 +55,7 @@ public class StackView extends VBox {
         this.getChildren().add(listView);
     }
     
-    public void initTest() {
+    /*public void initTest() {
         try {
             stackClass.push(new ComplexNumber("2+2i"));
             stackClass.push(new ComplexNumber("2i"));
@@ -78,7 +78,7 @@ public class StackView extends VBox {
         } catch (SystemErrorException ex) {
             Logger.getLogger(StackView.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }*/
     
     
 
