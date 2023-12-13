@@ -4,8 +4,6 @@ import scientificcalculator.complexnumber.ComplexNumber;
 import scientificcalculator.complexnumber.Stack;
 import exceptions.SyntaxErrorException;
 import exceptions.SystemErrorException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import static javafx.application.Platform.exit;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -19,19 +17,14 @@ public class MathOperation extends Operation {
     @Override
     public void solveOperation() {
         if (this.operator.matches("(\\+\\-|sqrt)")) {
-            try {
                 this.unary();
-            } catch (SystemErrorException ex) {
-                Logger.getLogger(MathOperation.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
         } else {
             this.notUnary();
         }
 
     }
 
-    public void unary() throws SystemErrorException {
+    public void unary() {
 
         try {
 
@@ -113,7 +106,7 @@ public class MathOperation extends Operation {
                 }
             }
         } catch (SyntaxErrorException ex) {
-            Alert dialog = new Alert(Alert.AlertType.ERROR, "Si è verificato un errore.\nLo stack non è sufficiente.", ButtonType.CLOSE);
+            Alert dialog = new Alert(Alert.AlertType.ERROR, "Si è verificato un errore.\nLo stack non ha abbastanza elementi.", ButtonType.CLOSE);
             dialog.setTitle("Stack non sufficiente");
             dialog.showAndWait();
             exit();

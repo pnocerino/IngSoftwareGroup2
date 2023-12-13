@@ -14,12 +14,10 @@ public class ComplexNumber {
 
     private double realPart;
     private double imPart;
-    private String number;
 
     public ComplexNumber(String number) {
         this.realPart = 0;
         this.imPart = 0;
-        this.number = number;
         number = number.replace(" ", "");
         number = number.replace(",", ".");
         String[] splitted = number.split("((?=[+-]))");
@@ -107,9 +105,13 @@ public class ComplexNumber {
         roots[0].realPart = Math.sqrt(modulus) * Math.cos(angles / 2);
         roots[0].imPart = Math.sqrt(modulus) * Math.sin(angles / 2);
         if(Math.round(roots[0].realPart) == 0) roots[0].realPart = 0;
+        if(Math.round(roots[0].imPart) == 1) roots[0].imPart = 1;
+        else if(Math.round(roots[0].imPart) == 0) roots[0].imPart = 0 ;
         roots[1].realPart = -(Math.sqrt(modulus) * Math.cos(angles / 2));
         roots[1].imPart = -(Math.sqrt(modulus) * Math.sin(angles / 2));
         if(Math.round(roots[1].realPart) == 0) roots[1].realPart = 0;
+        if(Math.round(roots[1].imPart) == 1) roots[1].imPart = 1;
+        else if(Math.round(roots[1].imPart) == 0) roots[1].imPart = 0 ;
 
         return roots;
 

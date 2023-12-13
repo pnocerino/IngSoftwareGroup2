@@ -1,3 +1,4 @@
+
 package scientificcalculator.complexnumber.operations;
 
 import scientificcalculator.complexnumber.ComplexNumber;
@@ -22,32 +23,11 @@ public class StackOperation extends Operation {
         } else if (this.operator.equals("drop")) {
             this.drop();
         } else if (this.operator.equals("dup")) {
-            try {
-                this.dup();
-            } catch (SystemErrorException ex) {
-                Alert dialog = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.OK);
-                dialog.setTitle("Stack vuoto");
-                dialog.showAndWait();
-                exit();
-            }
+            this.dup();
         } else if (this.operator.equals("swap")) {
-            try {
-                this.swap();
-            } catch (SystemErrorException ex) {
-                Alert dialog = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.OK);
-                dialog.setTitle("Stack vuoto");
-                dialog.showAndWait();
-                exit();
-            }
+            this.swap();
         } else if (this.operator.equals("over")) {
-            try {
-                this.over();
-            } catch (SystemErrorException ex) {
-                Alert dialog = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.OK);
-                dialog.setTitle("Stack vuoto");
-                dialog.showAndWait();
-                exit();
-            }
+            this.over();
         }
 
     }
@@ -79,41 +59,59 @@ public class StackOperation extends Operation {
 
     }
 
-    public void dup() throws SystemErrorException {
+    public void dup() {
         try {
             super.getStack().push(super.getStack().peek());
-        } catch (SyntaxErrorException ex) {
-            Alert dialog = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.OK);
-            dialog.setTitle("Stack vuoto");
-            dialog.showAndWait();
-            exit();
+        } catch (SyntaxErrorException | SystemErrorException ex) {
+            if (ex instanceof SystemErrorException) {
+                Alert dialog = new Alert(Alert.AlertType.INFORMATION, ex.getMessage(), ButtonType.OK);
+                dialog.setTitle("Stack vuoto");
+                dialog.showAndWait();
+            } else {
+                Alert dialog = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.OK);
+                dialog.setTitle("Stack pieno");
+                dialog.showAndWait();
+                exit();
+            }
         }
     }
 
-    public void swap() throws SystemErrorException {
+    public void swap() {
         try {
             ComplexNumber top = super.getStack().pop();
             ComplexNumber bot = super.getStack().pop();
             super.getStack().push(top);
             super.getStack().push(bot);
-        } catch (SyntaxErrorException ex) {
-            Alert dialog = new Alert(Alert.AlertType.ERROR, "Si è verificato un errore.\nLo stack non contiene abbastanza elementi.", ButtonType.OK);
-            dialog.setTitle("Stack senza elementi necessari");
-            dialog.showAndWait();
-            exit();
+        } catch (SyntaxErrorException | SystemErrorException ex) {
+            if (ex instanceof SystemErrorException) {
+                Alert dialog = new Alert(Alert.AlertType.INFORMATION, ex.getMessage(), ButtonType.OK);
+                dialog.setTitle("Stack vuoto");
+                dialog.showAndWait();
+            } else {
+                Alert dialog = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.OK);
+                dialog.setTitle("Stack pieno");
+                dialog.showAndWait();
+                exit();
+            }
         }
     }
 
-    public void over() throws SystemErrorException {
+    public void over() {
         try {
             ComplexNumber n = super.getStack().pop();
             super.getStack().push(super.getStack().peek());
             super.getStack().push(n);
-        } catch (SyntaxErrorException ex) {
-            Alert dialog = new Alert(Alert.AlertType.ERROR, "Si è verificato un errore.\nLo stack non contiene abbastanza elementi.", ButtonType.OK);
-            dialog.setTitle("Stack senza elementi necessari");
-            dialog.showAndWait();
-            exit();
+        } catch (SyntaxErrorException | SystemErrorException ex) {
+            if (ex instanceof SystemErrorException) {
+                Alert dialog = new Alert(Alert.AlertType.INFORMATION, ex.getMessage(), ButtonType.OK);
+                dialog.setTitle("Stack vuoto");
+                dialog.showAndWait();
+            } else {
+                Alert dialog = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.OK);
+                dialog.setTitle("Stack pieno");
+                dialog.showAndWait();
+                exit();
+            }
         }
 
     }
