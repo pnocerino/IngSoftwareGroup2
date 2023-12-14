@@ -41,10 +41,9 @@ public class StackOperation extends Operation {
 
             super.getStack().getStack().clear();
         } catch (SystemErrorException ex) {
-            Alert dialog = new Alert(Alert.AlertType.ERROR, "Si è verificato un errore.\nLo stack è vuoto.", ButtonType.OK);
+            Alert dialog = new Alert(Alert.AlertType.INFORMATION, "Si è verificato un errore.\nLo stack è vuoto.", ButtonType.OK);
             dialog.setTitle("Stack vuoto");
             dialog.showAndWait();
-            exit();
         }
 
     }
@@ -56,7 +55,6 @@ public class StackOperation extends Operation {
             Alert dialog = new Alert(Alert.AlertType.ERROR, "Si è verificato un errore.\nLo stack è vuoto.", ButtonType.OK);
             dialog.setTitle("Stack vuoto");
             dialog.showAndWait();
-            exit();
         }
 
     }
@@ -70,7 +68,7 @@ public class StackOperation extends Operation {
                 dialog.setTitle("Stack vuoto");
                 dialog.showAndWait();
             } else {
-                Alert dialog = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.OK);
+                Alert dialog = new Alert(Alert.AlertType.INFORMATION, ex.getMessage(), ButtonType.OK);
                 dialog.setTitle("Stack pieno");
                 dialog.showAndWait();
                 exit();

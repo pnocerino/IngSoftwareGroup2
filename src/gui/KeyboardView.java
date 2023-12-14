@@ -71,17 +71,17 @@ public class KeyboardView extends HBox {
     private void initOperatorButtons() {
         operatorKeys = new Button[OPERATORS + 2];
         
-        operatorKeys[0] = new Button(); operatorKeys[0].setText("↩"); operatorKeys[0].setTooltip(new Tooltip("Inserisce il numero nello stack."));
+        operatorKeys[0] = new Button(); operatorKeys[0].setText("↩"); operatorKeys[0].setTooltip(new Tooltip("Inserisce il numero nello stack o esegue un comando."));
         operatorKeys[0].getStyleClass().add("enterButton"); 
         operatorKeys[1] = new Button(); operatorKeys[1].setText("←");
         operatorKeys[1].getStyleClass().add("backButton"); 
-        operatorKeys[2] = new Button(); operatorKeys[2].setText("+");
+        operatorKeys[2] = new Button(); operatorKeys[2].setText("+"); operatorKeys[2].setTooltip(new Tooltip("Effettua l' addizione o inserisce il segno \"+\"."));
         operatorKeys[2].getStyleClass().add("operatorButton");
-        operatorKeys[3] = new Button(); operatorKeys[3].setText("-");
+        operatorKeys[3] = new Button(); operatorKeys[3].setText("-"); operatorKeys[3].setTooltip(new Tooltip("Effettua la sottrazione o inserisce il segno \"-\"."));
         operatorKeys[3].getStyleClass().add("operatorButton");
-        operatorKeys[4] = new Button(); operatorKeys[4].setText("×");
+        operatorKeys[4] = new Button(); operatorKeys[4].setText("×"); operatorKeys[4].setTooltip(new Tooltip("Effettua la moltiplicazione."));
         operatorKeys[4].getStyleClass().add("operatorButton");
-        operatorKeys[5] = new Button(); operatorKeys[5].setText("/");
+        operatorKeys[5] = new Button(); operatorKeys[5].setText("/"); operatorKeys[5].setTooltip(new Tooltip("Effettua la divisione."));
         operatorKeys[5].getStyleClass().add("operatorButton");
         operatorKeys[6] = new Button(); operatorKeys[6].setText("√"); operatorKeys[6].setTooltip(new Tooltip("Effettua la radice quadrata."));
         operatorKeys[6].getStyleClass().add("operatorButton");
