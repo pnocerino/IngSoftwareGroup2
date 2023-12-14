@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.VBox;
 
 public class StackView extends VBox {
@@ -35,9 +36,11 @@ public class StackView extends VBox {
                     setText(null);
                 } else {
                     setText(item.toString());
+                    setTooltip(new Tooltip(item.toString()));
                 }
             }
         });
+        
         
         this.getChildren().add(listView);
     }
