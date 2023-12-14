@@ -5,6 +5,8 @@ import scientificcalculator.complexnumber.ComplexNumber;
 import scientificcalculator.complexnumber.Stack;
 import exceptions.SyntaxErrorException;
 import exceptions.SystemErrorException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static javafx.application.Platform.exit;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -21,9 +23,23 @@ public class StackOperation extends Operation {
         if (this.operator.equals("clear")) {
             this.clear();
         } else if (this.operator.equals("drop")) {
-            this.drop();
+            try {
+                this.drop();
+            } catch (SystemErrorException ex) {
+                Alert dialog = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.OK);
+                dialog.setTitle("Stack vuoto");
+                dialog.showAndWait();
+                exit();
+            }
         } else if (this.operator.equals("dup")) {
-            this.dup();
+            try {
+                this.dup();
+            } catch (SyntaxErrorException ex) {
+                Alert dialog = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.OK);
+                dialog.setTitle("Stack pieno");
+                dialog.showAndWait();
+                exit();
+            }
         } else if (this.operator.equals("swap")) {
             this.swap();
         } else if (this.operator.equals("over")) {
@@ -48,13 +64,12 @@ public class StackOperation extends Operation {
 
     }
 
-    public void drop() {
+    public void drop() throws SystemErrorException {
         try {
             super.getStack().pop();
         } catch (SyntaxErrorException ex) {
-            Alert dialog = new Alert(Alert.AlertType.ERROR, "Si è verificato un errore.\nLo stack è vuoto.", ButtonType.OK);
-            dialog.setTitle("Stack vuoto");
-            dialog.showAndWait();
+            throw new SystemErrorException("Si è verificato un errore.\nLo stack è vuoto.");
+            
         }
 
     }
@@ -64,11 +79,9 @@ public class StackOperation extends Operation {
             super.getStack().push(super.getStack().peek());
         } catch (SyntaxErrorException | SystemErrorException ex) {
             if (ex instanceof SystemErrorException) {
-                Alert dialog = new Alert(Alert.AlertType.INFORMATION, ex.getMessage(), ButtonType.OK);
-                dialog.setTitle("Stack vuoto");
-                dialog.showAndWait();
+                throw new SyntaxErrorException("Si è verificato un errore.\nLo stack è pieno.");
             } else {
-                Alert dialog = new Alert(Alert.AlertType.INFORMATION, ex.getMessage(), ButtonType.OK);
+                Alert dialog = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.OK);
                 dialog.setTitle("Stack pieno");
                 dialog.showAndWait();
                 exit();
@@ -84,12 +97,12 @@ public class StackOperation extends Operation {
             super.getStack().push(bot);
         } catch (SyntaxErrorException | SystemErrorException ex) {
             if (ex instanceof SystemErrorException) {
-                Alert dialog = new Alert(Alert.AlertType.INFORMATION, ex.getMessage(), ButtonType.OK);
+                Alert dialog = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.OK);
                 dialog.setTitle("Stack vuoto");
                 dialog.showAndWait();
             } else {
                 Alert dialog = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.OK);
-                dialog.setTitle("Stack pieno");
+                dialog.setTitle("Stack vuoto");
                 dialog.showAndWait();
                 exit();
             }
@@ -103,12 +116,10 @@ public class StackOperation extends Operation {
             super.getStack().push(n);
         } catch (SyntaxErrorException | SystemErrorException ex) {
             if (ex instanceof SystemErrorException) {
-                Alert dialog = new Alert(Alert.AlertType.INFORMATION, ex.getMessage(), ButtonType.OK);
-                dialog.setTitle("Stack vuoto");
-                dialog.showAndWait();
+                throw new SyntaxErrorException("Si è verificato un' errore.\nLo stack è pieno.\n");
             } else {
-                Alert dialog = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.OK);
-                dialog.setTitle("Stack pieno");
+                Alert dialog = new Alert(Alert.AlertType.ERROR, "Si è verificato un errore.\nLo stack non contiene abbastanza elementi.\n", ButtonType.OK);
+                dialog.setTitle("Stack non sufficiente.");
                 dialog.showAndWait();
                 exit();
             }

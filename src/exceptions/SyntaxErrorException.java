@@ -1,7 +1,7 @@
 
 package exceptions;
 
-public class SyntaxErrorException extends Exception {
+public class SyntaxErrorException extends RuntimeException {
 
     public SyntaxErrorException() {
     }

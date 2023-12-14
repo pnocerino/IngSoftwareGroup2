@@ -1,7 +1,7 @@
 
 package exceptions;
 
-public class MathErrorException extends Exception {
+public class MathErrorException extends RuntimeException {
 
     
     public MathErrorException() {
