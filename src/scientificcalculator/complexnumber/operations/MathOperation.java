@@ -1,9 +1,12 @@
 package scientificcalculator.complexnumber.operations;
 
+import exceptions.MathErrorException;
 import scientificcalculator.complexnumber.ComplexNumber;
 import scientificcalculator.complexnumber.Stack;
 import exceptions.SyntaxErrorException;
 import exceptions.SystemErrorException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static javafx.application.Platform.exit;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -101,6 +104,10 @@ public class MathOperation extends Operation {
                 } catch (SystemErrorException ex) {
                     Alert dialog = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.CLOSE);
                     dialog.setTitle("Stack pieno");
+                    dialog.showAndWait();
+                    exit();
+                } catch (MathErrorException ex) {
+                    Alert dialog = new Alert(Alert.AlertType.ERROR, ex.getMessage(), ButtonType.CLOSE);
                     dialog.showAndWait();
                     exit();
                 }

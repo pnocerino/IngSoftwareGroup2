@@ -5,6 +5,8 @@ import exceptions.SyntaxErrorException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static javafx.application.Platform.exit;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -71,24 +73,19 @@ public class ComplexNumber {
         return mul;
     }
 
-    public ComplexNumber divide(ComplexNumber n) {
+    public ComplexNumber divide(ComplexNumber n) throws MathErrorException {
         //(a + bi) / (c + di) = (a + bi)(c - di) / (c + di)(c - di) = (numRE / den) + (numIM / den);
         ComplexNumber conj = new ComplexNumber(n.toString());
         conj.imPart = -(conj.imPart);
         ComplexNumber div = new ComplexNumber("0");
-        ComplexNumber num = new ComplexNumber(this.multiply(conj).toString());
-        ComplexNumber den = new ComplexNumber(n.multiply(conj).toString());
-        try {
-            if (den.realPart == 0) {
-                throw new MathErrorException("Si è verificato un errore matematico.\nImpossibile dividere per 0.\n");
-            }
-            div.realPart = num.realPart / den.realPart;
-            div.imPart = num.imPart / den.realPart;
-        } catch (MathErrorException ex) {
-            Alert dialog = new Alert(AlertType.ERROR, ex.getMessage(), ButtonType.CLOSE);
-            dialog.showAndWait();
-            exit();
+        ComplexNumber num = this.multiply(conj);
+        ComplexNumber den = n.multiply(conj);
+        if (den.realPart == 0) {
+            throw new MathErrorException("Si è verificato un errore matematico.\nImpossibile dividere per 0.\n");
         }
+        div.realPart = num.realPart / den.realPart;
+        div.imPart = num.imPart / den.realPart;
+
         return div;
     }
 
@@ -104,14 +101,24 @@ public class ComplexNumber {
 
         roots[0].realPart = Math.sqrt(modulus) * Math.cos(angles / 2);
         roots[0].imPart = Math.sqrt(modulus) * Math.sin(angles / 2);
-        if(Math.round(roots[0].realPart) == 0) roots[0].realPart = 0;
-        if(Math.round(roots[0].imPart) == 1) roots[0].imPart = 1;
-        else if(Math.round(roots[0].imPart) == 0) roots[0].imPart = 0 ;
+        if (Math.abs(roots[0].realPart) < 1e-10) {
+            roots[0].realPart = 0;
+        }
+        if (Math.abs(roots[0].imPart - 1) < 1e-10) {
+            roots[0].imPart = 1;
+        } else if (Math.abs(roots[0].imPart) < 1e-10) {
+            roots[0].imPart = 0;
+        }
         roots[1].realPart = -(Math.sqrt(modulus) * Math.cos(angles / 2));
         roots[1].imPart = -(Math.sqrt(modulus) * Math.sin(angles / 2));
-        if(Math.round(roots[1].realPart) == 0) roots[1].realPart = 0;
-        if(Math.round(roots[1].imPart) == 1) roots[1].imPart = 1;
-        else if(Math.round(roots[1].imPart) == 0) roots[1].imPart = 0 ;
+        if (Math.abs(roots[1].realPart) < 1e-10) {
+            roots[1].realPart = 0;
+        }
+        if (Math.abs(roots[1].imPart - 1) < 1e-10) {
+            roots[1].imPart = 1;
+        } else if (Math.abs(roots[1].imPart) < 1e-10) {
+            roots[1].imPart = 0;
+        }
 
         return roots;
 

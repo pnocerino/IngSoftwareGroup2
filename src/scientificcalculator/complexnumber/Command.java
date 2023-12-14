@@ -101,7 +101,7 @@ public class Command {
         if(this.isOperand()){
             ComplexNumber n = new ComplexNumber(this.command);
             try {
-                stack.push(n);
+                stack.push(new ComplexNumber(n.toString()));
             } catch (SystemErrorException ex) {
                 Alert dialog = new Alert(Alert.AlertType.INFORMATION, ex.getMessage(), ButtonType.OK);
                 dialog.setTitle("Stack pieno"); dialog.showAndWait();

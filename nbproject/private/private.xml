@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/utente/Documents/NetBeansProjects/ScientificCalculator/src/scientificcalculator/complexnumber/operations/StackOperation.java</file>
-            <file>file:/C:/Users/utente/Documents/NetBeansProjects/ScientificCalculator/src/scientificcalculator/complexnumber/operations/VariableOperation.java</file>
+            <file>file:/C:/Users/utente/Documents/NetBeansProjects/ScientificCalculator/src/scientificcalculator/complexnumber/operations/MathOperation.java</file>
+            <file>file:/C:/Users/utente/Documents/NetBeansProjects/ScientificCalculator/src/scientificcalculator/complexnumber/Command.java</file>
+            <file>file:/C:/Users/utente/Documents/NetBeansProjects/ScientificCalculator/src/scientificcalculator/complexnumber/ComplexNumber.java</file>
+            <file>file:/C:/Users/utente/Documents/NetBeansProjects/ScientificCalculator/test/scientificcalculator/complexnumber/ComplexNumberTest.java</file>
         </group>
     </open-files>
 </project-private>
