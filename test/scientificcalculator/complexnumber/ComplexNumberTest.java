@@ -657,6 +657,282 @@ public class ComplexNumberTest {
 
         assertEquals("-0.6i", somma.toString().replace(" ", ""));
     }
-    
-    
+
+    @Test
+    public void testSquareRoot1() {
+        ComplexNumber num1 = new ComplexNumber("7+11i");
+        ComplexNumber[] radicequad = new ComplexNumber[2];
+        radicequad = num1.squareRoot();
+
+        assertEquals("3.165+1.738i", radicequad[0].toString().replace(" ", ""));
+        assertEquals("-3.165-1.738i", radicequad[1].toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSquareRoot2() {
+        ComplexNumber num1 = new ComplexNumber("27-i");
+        ComplexNumber[] radicequad = new ComplexNumber[2];
+        radicequad = num1.squareRoot();
+
+        assertEquals("5.197+0.096i", radicequad[0].toString().replace(" ", ""));
+        assertEquals("-5.197-0.096i", radicequad[1].toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSquareRoot3() {
+        ComplexNumber num1 = new ComplexNumber("-4+44i");
+        ComplexNumber[] radicequad = new ComplexNumber[2];
+        radicequad = num1.squareRoot();
+        assertEquals("4.964+4.432i", radicequad[0].toString().replace(" ", ""));
+        assertEquals("-4.964-4.432i", radicequad[1].toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSquareRoot4() {
+        ComplexNumber num1 = new ComplexNumber("-104-6i");
+        ComplexNumber[] radicequad = new ComplexNumber[2];
+        radicequad = num1.squareRoot();
+        assertEquals("0.294+10.202i", radicequad[0].toString().replace(" ", ""));
+        assertEquals("-0.294-10.202i", radicequad[1].toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSquareRoot5() {
+        ComplexNumber num1 = new ComplexNumber("7.1+1.1i");
+        ComplexNumber[] radicequad = new ComplexNumber[2];
+        radicequad = num1.squareRoot();
+        assertEquals("+2.673+0.206i", radicequad[0].toString().replace(" ", ""));
+        assertEquals("-2.673-0.206i", radicequad[1].toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSquareRoot6() {
+        ComplexNumber num1 = new ComplexNumber("4.17-15.1i");
+        ComplexNumber[] radicequad = new ComplexNumber[2];
+        radicequad = num1.squareRoot();
+        assertEquals("3.149+2.397i", radicequad[0].toString().replace(" ", ""));
+        assertEquals("-3.149-2.397i", radicequad[1].toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSquareRoot7() {
+        ComplexNumber num1 = new ComplexNumber("-2.3+4.009i");
+        ComplexNumber[] radicequad = new ComplexNumber[2];
+        radicequad = num1.squareRoot();
+        assertEquals("1.077+1.86i", radicequad[0].toString().replace(" ", ""));
+        assertEquals("-1.077-1.86i", radicequad[1].toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSquareRoot8() {
+        ComplexNumber num1 = new ComplexNumber("-6.5-2.58i");
+        ComplexNumber[] radicequad = new ComplexNumber[2];
+        radicequad = num1.squareRoot();
+        assertEquals("0.497+2.597i", radicequad[0].toString().replace(" ", ""));
+        assertEquals("-0.497-2.597i", radicequad[1].toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSquareRoot9() {
+        ComplexNumber num1 = new ComplexNumber("66");
+        ComplexNumber[] radicequad = new ComplexNumber[2];
+        radicequad = num1.squareRoot();
+        assertEquals("8.124", radicequad[0].toString().replace(" ", ""));
+        assertEquals("-8.124", radicequad[1].toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSquareRoot10() {
+        ComplexNumber num1 = new ComplexNumber("-71");
+        ComplexNumber[] radicequad = new ComplexNumber[2];
+        radicequad = num1.squareRoot();
+        assertEquals("8.426i", radicequad[0].toString().replace(" ", ""));
+        assertEquals("-8.426i", radicequad[1].toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSquareRoot11() {
+        ComplexNumber num1 = new ComplexNumber("112i");
+        ComplexNumber[] radicequad = new ComplexNumber[2];
+        radicequad = num1.squareRoot();
+        assertEquals("7.483+7.483i", radicequad[0].toString().replace(" ", ""));
+        assertEquals("-7.483-7.483i", radicequad[1].toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSquareRoot12() {
+        ComplexNumber num1 = new ComplexNumber("-121i");
+        ComplexNumber[] radicequad = new ComplexNumber[2];
+        radicequad = num1.squareRoot();
+        assertEquals("7.483+7.778i", radicequad[0].toString().replace(" ", ""));
+        assertEquals("-7.483-7.778i", radicequad[1].toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSquareRoot13() {
+        ComplexNumber num1 = new ComplexNumber("17.1");
+        ComplexNumber[] radicequad = new ComplexNumber[2];
+        radicequad = num1.squareRoot();
+        assertEquals("4.135i", radicequad[0].toString().replace(" ", ""));
+        assertEquals("-4.135i", radicequad[1].toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSquareRoot14() {
+        ComplexNumber num1 = new ComplexNumber("-6.3");
+        ComplexNumber[] radicequad = new ComplexNumber[2];
+        radicequad = num1.squareRoot();
+        assertEquals("2.51i", radicequad[0].toString().replace(" ", ""));
+        assertEquals("-2.51i", radicequad[1].toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSquareRoot15() {
+        ComplexNumber num1 = new ComplexNumber("4.98i");
+        ComplexNumber[] radicequad = new ComplexNumber[2];
+        radicequad = num1.squareRoot();
+        assertEquals("1.578+1.578i", radicequad[0].toString().replace(" ", ""));
+        assertEquals("-1.578-1.578i", radicequad[1].toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSquareRoot16() {
+        ComplexNumber num1 = new ComplexNumber("-1.11i");
+        ComplexNumber[] radicequad = new ComplexNumber[2];
+        radicequad = num1.squareRoot();
+        assertEquals("0.745+0.745i", radicequad[0].toString().replace(" ", ""));
+        assertEquals("-0.745-0.745i", radicequad[1].toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSignChange1() {
+        ComplexNumber num1 = new ComplexNumber("7+11i");
+        ComplexNumber segno = new ComplexNumber("0");
+        segno = num1.signChange();
+
+        assertEquals("-7-11i", segno.toString().replace(" ", ""));
+
+    }
+
+    @Test
+    public void testSignChange2() {
+        ComplexNumber num1 = new ComplexNumber("27-i");
+        ComplexNumber segno = new ComplexNumber("0");
+        segno = num1.signChange();
+
+        assertEquals("-27+i", segno.toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSignChange3() {
+        ComplexNumber num1 = new ComplexNumber("-4+44i");
+        ComplexNumber segno = new ComplexNumber("0");
+        segno = num1.signChange();
+        assertEquals("4-44i", segno.toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSignChange4() {
+        ComplexNumber num1 = new ComplexNumber("-104-6i");
+        ComplexNumber segno = new ComplexNumber("0");
+        segno = num1.signChange();
+        assertEquals("104+6i", segno.toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSignChange5() {
+        ComplexNumber num1 = new ComplexNumber("7.1+1.1i");
+        ComplexNumber segno = new ComplexNumber("0");
+        segno = num1.signChange();
+        assertEquals("-7.1-1.1i", segno.toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSignChange6() {
+        ComplexNumber num1 = new ComplexNumber("4.17-15.1i");
+        ComplexNumber segno = new ComplexNumber("0");
+        segno = num1.signChange();
+        assertEquals("-4.17+15.1", segno.toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSignChange7() {
+        ComplexNumber num1 = new ComplexNumber("-2.3+4.009i");
+        ComplexNumber segno = new ComplexNumber("0");
+        segno = num1.signChange();
+        assertEquals("2.3-4.009i", segno.toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSignChange8() {
+        ComplexNumber num1 = new ComplexNumber("-6.5-2.58i");
+        ComplexNumber segno = new ComplexNumber("0");
+        segno = num1.signChange();
+        assertEquals("6.5+2.58i", segno.toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSignChange9() {
+        ComplexNumber num1 = new ComplexNumber("66");
+        ComplexNumber segno = new ComplexNumber("0");;
+        segno = num1.signChange();
+        assertEquals("-66", segno.toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSignChange15() {
+        ComplexNumber num1 = new ComplexNumber("4.98i");
+        ComplexNumber segno = new ComplexNumber("0");
+        segno = num1.signChange();
+        assertEquals("-4.98i", segno.toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSignChange11() {
+        ComplexNumber num1 = new ComplexNumber("-71");
+        ComplexNumber segno = new ComplexNumber("0");
+        segno = num1.signChange();
+        assertEquals("71", segno.toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSignChange12() {
+        ComplexNumber num1 = new ComplexNumber("112i");
+        ComplexNumber segno = new ComplexNumber("0");
+        segno = num1.signChange();
+        assertEquals("-112i", segno.toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSignChange13() {
+        ComplexNumber num1 = new ComplexNumber("-121i");
+        ComplexNumber segno = new ComplexNumber("0");
+        segno = num1.signChange();
+        assertEquals("121i", segno.toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSignChange14() {
+        ComplexNumber num1 = new ComplexNumber("17.1");
+        ComplexNumber segno = new ComplexNumber("0");
+        segno = num1.signChange();
+        assertEquals("-17.1", segno.toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSignChange10() {
+        ComplexNumber num1 = new ComplexNumber("-6.3");
+        ComplexNumber segno = new ComplexNumber("0");
+        segno = num1.signChange();
+        assertEquals("6.3", segno.toString().replace(" ", ""));
+    }
+
+    @Test
+    public void testSignChange16() {
+
+        ComplexNumber num1 = new ComplexNumber("-1.11i");
+        ComplexNumber segno = new ComplexNumber("0");
+        segno = num1.signChange();
+        assertEquals("1.11i", segno.toString().replace(" ", ""));
+    }
 }
