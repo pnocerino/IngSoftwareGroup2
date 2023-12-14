@@ -44,6 +44,7 @@ public class StackOperation extends Operation {
             Alert dialog = new Alert(Alert.AlertType.ERROR, "Si è verificato un errore.\nLo stack è vuoto.", ButtonType.OK);
             dialog.setTitle("Stack vuoto");
             dialog.showAndWait();
+            exit();
         }
 
     }
@@ -55,6 +56,7 @@ public class StackOperation extends Operation {
             Alert dialog = new Alert(Alert.AlertType.ERROR, "Si è verificato un errore.\nLo stack è vuoto.", ButtonType.OK);
             dialog.setTitle("Stack vuoto");
             dialog.showAndWait();
+            exit();
         }
 
     }
