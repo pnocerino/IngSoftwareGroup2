@@ -32,7 +32,7 @@ public class ComplexNumber {
                             this.imPart = this.imPart + 1;
                         } else if (s.equals("-i")) {
                             this.imPart = this.imPart - 1;
-                        } else if (s.endsWith("i") || s.startsWith("i")) {
+                        } else if (s.endsWith("i") || s.startsWith("+i") || s.startsWith("-i")) {
                             this.imPart = this.imPart + Double.parseDouble(s.replace("i", ""));
                         } else {
                             this.realPart = this.realPart + Double.parseDouble(s);
